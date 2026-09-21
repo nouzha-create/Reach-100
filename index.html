@@ -1,0 +1,3109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0d1b26">
+<title>Get to 100 — الوصول إلى 100</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=STIX+Two+Text:ital,wght@0,500;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0d1b26; --bg2: #0a151e; --panel: #16283a; --panel2: #1c3247;
+    --accent: #c98a3f; --accent-dim: #96652c; --teal: #4f9a8c;
+    --text: #eef1ea; --muted: #8ea3b3; --danger: #c0574b;
+    --border: rgba(201,138,63,0.28);
+  }
+  *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html{ height: 100%; }
+  body{
+    margin:0; min-height:100vh; min-height:100dvh;
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(rgba(201,138,63,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,138,63,0.045) 1px, transparent 1px),
+      radial-gradient(ellipse at 20% -10%, rgba(201,138,63,0.08), transparent 45%),
+      radial-gradient(ellipse at 100% 110%, rgba(79,154,140,0.10), transparent 45%);
+    background-size: 28px 28px, 28px 28px, auto, auto;
+    color: var(--text); font-family: 'Tajawal', sans-serif;
+    padding: max(32px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(64px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    overscroll-behavior-y: contain;
+  }
+  .wrap{ max-width: 760px; margin: 0 auto; }
+  [dir="ltr"] body{ font-family: 'Tajawal', sans-serif; }
+  .serif{ font-family:'STIX Two Text', serif; font-style: italic; }
+  .mono{ font-family:'IBM Plex Mono', monospace; font-style: normal; }
+
+  /* ---------- corner crop marks (signature motif) ---------- */
+  .crops{ position:absolute; inset:0; pointer-events:none; }
+  .crop{ position:absolute; width:13px; height:13px; }
+  .crop.tl{ top:-1px; left:-1px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .crop.tr{ top:-1px; right:-1px; border-top:2px solid var(--accent); border-right:2px solid var(--accent); }
+  .crop.bl{ bottom:-1px; left:-1px; border-bottom:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .crop.br{ bottom:-1px; right:-1px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+
+  /* ---------- landing ---------- */
+  .landing{
+    min-height: 78vh; min-height: 78dvh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; position:relative; overflow:hidden; padding: 14px;
+  }
+  .floaty{
+    position:absolute; font-family:'IBM Plex Mono', monospace; font-weight:600;
+    color: transparent; -webkit-text-stroke: 1.3px var(--accent); opacity:0.22; user-select:none; pointer-events:none;
+    animation: floaty 7s ease-in-out infinite;
+  }
+  @keyframes floaty{ 0%,100%{ transform: translateY(0) rotate(0deg);} 50%{ transform: translateY(-16px) rotate(6deg);} }
+  .f1{ top:8%; left:8%; font-size:64px; animation-delay:0s; }
+  .f2{ top:14%; right:10%; font-size:44px; -webkit-text-stroke-color:var(--teal); animation-delay:1.2s; }
+  .f3{ bottom:18%; left:12%; font-size:52px; -webkit-text-stroke-color:var(--teal); animation-delay:2s; }
+  .f4{ bottom:10%; right:8%; font-size:70px; animation-delay:0.6s; }
+  .f5{ top:45%; left:4%; font-size:38px; animation-delay:1.8s; }
+  .f6{ top:40%; right:4%; font-size:38px; -webkit-text-stroke-color:var(--teal); animation-delay:2.4s; }
+
+  .landing-badge{
+    position:relative; z-index:1;
+    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:2px;
+    color: var(--accent); border: 1px solid var(--border); padding:3px 12px; border-radius:2px;
+    margin-bottom: 12px;
+  }
+  .landing-title{ position:relative; z-index:1; font-weight:600; font-style:italic; font-family:'STIX Two Text', serif; font-size: clamp(26px, 8vw, 40px); line-height:1.15; margin:0 0 4px; }
+  .landing-title .num{ font-style:normal; font-family:'IBM Plex Mono', monospace; color: var(--accent); }
+  .landing-title .en{
+    display:block; font-family:'IBM Plex Mono', monospace; font-style:normal; color: var(--accent);
+    font-size: 0.4em; letter-spacing: 2px; margin-top:8px; direction:ltr;
+  }
+  .landing-sub{ position:relative; z-index:1; color: var(--muted); font-size:12px; max-width:320px; margin: 0 0 16px; line-height:1.5; }
+
+  .lang-toggle{ position:relative; z-index:1; display:flex; gap:6px; flex-wrap:wrap; justify-content:center; max-width:300px; margin-bottom:16px; direction:ltr; }
+  .lang-btn{
+    padding: 6px 14px; border-radius: 3px; border: 1px solid var(--border);
+    background: var(--panel2); color: var(--muted); font-weight:700; font-size:11px;
+    cursor:pointer; font-family:'IBM Plex Mono', monospace; letter-spacing:0.5px; transition: all 0.15s ease;
+  }
+  .lang-btn.active{ background: var(--accent); color:#1a1305; border-color: var(--accent); }
+  .lang-btn:not(.active):hover{ color: var(--text); }
+
+  .start-btn{
+    position:relative; z-index:1;
+    background: var(--accent); color:#1a1305; border:none;
+    font-family:'Tajawal', sans-serif; font-weight:900; font-size:15px;
+    padding: 11px 34px; border-radius: 4px; cursor:pointer;
+    box-shadow: 0 16px 30px -14px rgba(201,138,63,0.5);
+    transition: transform 0.12s ease, filter 0.12s ease;
+  }
+  .start-btn:hover{ filter: brightness(1.06); }
+  .start-btn:active{ transform: scale(0.97); }
+  .account-link{
+    position:relative; z-index:1; display:block; margin-top:14px;
+    background:none; border:none; color: var(--muted); font-size:11px;
+    font-family:'Tajawal', sans-serif; text-decoration: underline; cursor:pointer;
+  }
+  .account-link:hover{ color: var(--accent); }
+
+  /* ---------- shared app chrome ---------- */
+  header{ text-align:center; margin-bottom: 10px; position:relative; }
+  .title-block{ border: 1px solid var(--border); border-radius: 4px; padding: 10px 12px 9px; margin-top: 2px; }
+  .header-top{ display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; margin-bottom:7px; }
+  .user-banner{
+    text-align:center; font-weight:900; font-size: clamp(15px, 4.5vw, 19px);
+    color: var(--accent); margin-bottom: 8px; letter-spacing: 0.3px;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: var(--accent);
+    border: 1px solid var(--border); padding: 3px 10px; border-radius: 2px;
+  }
+  .lang-single-btn{
+    display:inline-flex; align-items:center; gap:5px; direction:ltr;
+    background: var(--panel2); border:1px solid var(--border); color: var(--text);
+    font-size:12px; font-weight:700; padding:5px 12px; border-radius:14px; cursor:pointer;
+    font-family:'IBM Plex Mono', monospace; letter-spacing:0.5px; transition: all 0.15s ease;
+  }
+  .lang-single-btn:hover{ border-color: var(--accent); color: var(--accent); }
+
+  h1{ font-weight: 600; font-style: italic; font-family:'STIX Two Text', serif; font-size: clamp(20px, 6vw, 28px); margin: 0 0 4px; }
+  h1 .num{ color: var(--accent); font-family:'IBM Plex Mono', monospace; font-style:normal; }
+  header p{ color: var(--muted); font-size: clamp(11px, 3vw, 13px); margin:0; line-height:1.4; }
+
+  .board{
+    position:relative;
+    background: linear-gradient(180deg, var(--panel), var(--panel2));
+    border: 1px solid var(--border); border-radius: 6px; padding: 14px 12px 12px;
+    box-shadow: 0 20px 50px -20px rgba(0,0,0,0.6); margin-bottom: 10px;
+  }
+
+  .tiles{ display:flex; justify-content:center; gap: clamp(3px, 1.5vw, 8px); flex-wrap:nowrap; margin-bottom: 10px; }
+  .tile{
+    width: clamp(30px, 10vw, 46px); height: clamp(40px, 12vw, 58px);
+    background: linear-gradient(180deg, #223a4d, #142230);
+    border: 1px solid rgba(201,138,63,0.3); border-radius: 4px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size: clamp(15px, 5vw, 24px); font-weight: 600;
+    color: var(--text); position: relative; flex-shrink:0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 16px -8px rgba(0,0,0,0.7);
+  }
+  .tile::after{ content:''; position:absolute; left:0; right:0; top:50%; height:1px; background: rgba(0,0,0,0.35); }
+  .tile.spin{ animation: flip 0.35s ease; }
+  @keyframes flip{ 0%{ transform: rotateX(0deg);} 50%{ transform: rotateX(90deg); opacity:0.4;} 100%{ transform: rotateX(0deg);} }
+  .tile.empty-slot{ color: var(--muted); opacity:0.45; font-weight:400; }
+  .tile.clickable{ cursor:pointer; transition: transform 0.1s ease, border-color 0.15s ease; border: 1px solid rgba(201,138,63,0.3); }
+  .tile.clickable:hover{ border-color: var(--accent); }
+  .tile.clickable:active{ transform: scale(0.93); }
+
+  .keypad-wrap{ margin-bottom: 8px; }
+  .keypad-label{ text-align:center; font-size:10px; color: var(--muted); margin-bottom:5px; letter-spacing: 1px; font-family:'IBM Plex Mono', monospace; text-transform:uppercase; }
+  .keypad{ direction: ltr; display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom: 8px; }
+  .key{
+    width: clamp(30px, 8vw, 38px); height: clamp(30px, 8vw, 38px); background: var(--panel2);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--text);
+    font-family:'IBM Plex Mono', monospace; font-size: clamp(13px, 4vw, 16px); font-weight:600; cursor:pointer;
+    transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .key:hover{ background: #24384a; border-color: var(--border); }
+  .key:active{ transform: scale(0.92); }
+  .key:disabled{ opacity:0.3; cursor:not-allowed; }
+  .key:disabled:hover{ background: var(--panel2); }
+
+  .goal-row{ display:flex; align-items:center; justify-content:center; gap:10px; color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+  .goal-row .arrow{ font-family:'IBM Plex Mono', monospace; color: var(--accent-dim); }
+  .goal{ font-family:'IBM Plex Mono', monospace; font-size: 16px; font-weight:700; color: var(--accent); border: 1px solid var(--border); padding: 2px 12px; border-radius: 3px; }
+
+  .controls{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  button{ font-family:'Tajawal', sans-serif; font-weight:700; font-size:13px; padding: 9px 16px; border-radius: 5px; border: none; cursor:pointer; transition: transform 0.12s ease, filter 0.12s ease; }
+  button:active{ transform: scale(0.97); }
+  .btn-primary{ background: var(--accent); color: #1a1305; }
+  .btn-primary:hover{ filter: brightness(1.08); }
+  .btn-ghost{ background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover{ background: rgba(255,255,255,0.04); }
+  .btn-ghost:disabled, .btn-primary:disabled{ opacity:0.35; cursor:not-allowed; }
+
+  .rules-toggle{
+    display:block; margin: 8px auto 0; background:none; border:none; color: var(--muted);
+    font-family:'IBM Plex Mono', monospace; font-size: 11px; text-decoration: underline;
+    cursor:pointer; padding: 4px;
+  }
+  .rules{ margin-top: 8px; padding-top: 10px; border-top: 1px dashed var(--border); font-size: 11px; color: var(--muted); line-height: 1.7; text-align:center; display:none; }
+  .rules.open{ display:block; }
+  .rules b{ color: var(--text); }
+  .rules .ops{ font-family:'IBM Plex Mono', monospace; color: var(--teal); letter-spacing:1px; }
+
+  .results{ margin-top: 10px; }
+  .loading{ text-align:center; color: var(--muted); padding: 16px 0; font-size:13px; }
+  .dot{ display:inline-block; width:6px;height:6px;border-radius:50%; background:var(--accent); margin:0 3px; animation: bounce 1s infinite; }
+  .dot:nth-child(2){ animation-delay:0.15s; }
+  .dot:nth-child(3){ animation-delay:0.3s; }
+  @keyframes bounce{ 0%,80%,100%{ opacity:0.25; transform: translateY(0);} 40%{ opacity:1; transform: translateY(-4px);} }
+
+  .empty{ text-align:center; padding: 16px 14px; border: 1px solid rgba(192,87,75,0.4); background: rgba(192,87,75,0.08); border-radius: 5px; color: #e2a49b; font-size: 13px; font-weight: 700; }
+  .empty span{ display:block; font-weight:400; color: var(--muted); font-size:12px; margin-top:5px; }
+
+  .ticket-list{ display:grid; gap: 6px; max-height: 38vh; overflow-y:auto; padding: 4px; }
+  .ticket{ background: var(--panel2); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 8px 12px; display:flex; align-items:center; justify-content:space-between; gap: 10px; }
+  .ticket .expr{ font-family:'IBM Plex Mono', monospace; font-size: 13px; direction:ltr; unicode-bidi:isolate; color: var(--text); word-break: break-all; }
+  .ticket .eq{ color: var(--muted); }
+  .ticket .res{ color: var(--accent); font-weight:700; }
+  .ticket .index{ font-family:'IBM Plex Mono', monospace; font-size:10px; color: var(--muted); flex-shrink:0; width: 22px; }
+  .ticket-list::-webkit-scrollbar{ width:8px; }
+  .ticket-list::-webkit-scrollbar-track{ background: transparent; }
+  .ticket-list::-webkit-scrollbar-thumb{ background: var(--border); border-radius: 8px; }
+
+  .mode-selector{ display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin-bottom: 10px; }
+  .mode-btn{
+    display:flex; flex-direction:column; align-items:center; gap:3px; background: var(--panel2);
+    border: 1px solid rgba(255,255,255,0.06); border-radius: 5px; padding: 8px 12px; min-width: 82px;
+    color: var(--muted); font-family:'Tajawal', sans-serif; font-weight:700; font-size: 11px; cursor:pointer;
+    transition: all 0.15s ease;
+  }
+  .mode-btn .icon{ font-size: 16px; line-height:1; }
+  .mode-btn:hover{ border-color: var(--border); color: var(--text); }
+  .mode-btn.active{ background: rgba(201,138,63,0.12); border-color: var(--accent); color: var(--accent); }
+
+  .count-display{ text-align:center; padding: 10px 14px; }
+  .count-display .big{ font-family:'IBM Plex Mono', monospace; font-size: 38px; font-weight:700; color: var(--accent); line-height:1; }
+  .count-display .label{ color: var(--muted); font-size:12px; margin-top:5px; }
+
+  .one-wrap{ padding: 4px; }
+  .one-actions{ text-align:center; margin-top:8px; }
+  .one-actions button{ font-size:12px; padding:6px 14px; }
+
+  .tabs{ display:flex; justify-content:center; gap:6px; margin-bottom: 10px; }
+  .tab-btn{
+    background: var(--panel); border: 1px solid var(--border); color: var(--muted);
+    font-family:'Tajawal', sans-serif; font-weight:700; font-size:12px; padding: 7px 14px;
+    border-radius: 24px; cursor:pointer; transition: all 0.15s ease;
+  }
+  .tab-btn.active{ background: var(--accent); color:#1a1305; border-color: var(--accent); }
+  .tab-btn:not(.active):hover{ color: var(--text); border-color: var(--accent-dim); }
+  .tab-btn.locked{ opacity:0.35; cursor:not-allowed; }
+
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  .diff-cards{ display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin: 4px 0 3px; }
+  .diff-card{
+    flex:1; min-width:72px; max-width:120px; background: var(--panel2);
+    border: 1px solid rgba(255,255,255,0.07); border-radius: 5px; padding: 7px 6px;
+    text-align:center; cursor:pointer; transition: all 0.15s ease;
+  }
+  .diff-card:hover{ border-color: var(--accent); transform: translateY(-2px); }
+  .diff-card .d-icon{ font-size: 15px; margin-bottom:2px; }
+  .diff-card .d-title{ font-weight:900; font-size:12px; margin-bottom:1px; }
+  .diff-card .d-time{ font-family:'IBM Plex Mono', monospace; color: var(--accent); font-size:11px; line-height:1.3; }
+  .diff-card.hard .d-title{ color: #e2a49b; }
+  .diff-card.hard:hover{ border-color: var(--danger); }
+  .diff-card.selected{ border-color: var(--accent); background: rgba(201,138,63,0.12); }
+
+  .sc-progress{ display:flex; justify-content:center; gap:6px; margin-bottom:10px; }
+  .sc-step{
+    width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:700;
+    border:1px solid var(--border); color: var(--muted); background: var(--panel2);
+  }
+  .sc-step.done{ background: var(--teal); color:var(--bg); border-color: var(--teal); }
+  .sc-step.current{ background: var(--accent); color:#1a1305; border-color: var(--accent); }
+
+  .sc-outcome{ text-align:center; padding: 14px 12px; }
+
+  .race-player{
+    border-radius: 8px; padding: 10px; margin-bottom: 10px;
+    border: 1px solid rgba(255,255,255,0.08); background: var(--panel2);
+  }
+  .race-player.p1{ border-color: rgba(79,154,140,0.4); }
+  .race-player.p2{ border-color: rgba(201,138,63,0.4); }
+  .race-player.won{ background: rgba(79,154,140,0.14); }
+  .race-player-name{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:1px;
+    text-transform:uppercase; margin-bottom:6px; text-align:center; font-weight:700;
+  }
+  .race-player.p1 .race-player-name{ color: var(--teal); }
+  .race-player.p2 .race-player-name{ color: var(--accent); }
+  .race-score{ text-align:center; font-size:12px; color: var(--muted); margin-bottom:10px; }
+  .race-score b{ font-family:'IBM Plex Mono', monospace; }
+  .race-tiles{ display:flex; justify-content:center; gap:5px; flex-wrap:nowrap; margin-bottom:8px; direction:ltr; }
+  .race-tiles .tile{ width: 28px; height: 36px; font-size: 14px; }
+  .sc-outcome .big-emoji{ font-size:34px; margin-bottom:6px; }
+  .sc-outcome h3{ font-family:'STIX Two Text', serif; font-style:italic; font-weight:600; font-size:17px; margin:0 0 6px; }
+  .sc-outcome p{ color: var(--muted); font-size:12px; margin:0 0 12px; }
+
+  .rb-list{ display:grid; gap:6px; margin-bottom:12px; text-align:start; max-height: 26vh; overflow-y:auto; }
+  .rb-item{ background: var(--panel2); border: 1px solid rgba(255,255,255,0.06); border-radius: 5px; padding: 7px 10px; }
+  .rb-head{ font-family:'IBM Plex Mono', monospace; font-size:11px; color: var(--muted); margin-bottom:4px; }
+  .rb-sol{ font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--teal); word-break: break-all; }
+  .rb-none{ font-size:11px; color: var(--danger); }
+
+  .rating-box{
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background: rgba(201,138,63,0.08); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 12px; margin-bottom: 10px;
+  }
+  .rating-emoji{ font-size:20px; }
+  .rating-text{ font-size:12px; font-weight:700; color: var(--accent); }
+
+  .timer-wrap{ text-align:center; margin-bottom: 10px; }
+  .timer-display{ font-family:'IBM Plex Mono', monospace; font-size: 30px; font-weight:700; color: var(--teal); letter-spacing: 1px; }
+  .timer-display.warn{ color: var(--danger); animation: pulse 1s infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:1;} 50%{ opacity:0.5;} }
+  .timer-bar{ width:100%; height:5px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow:hidden; margin-top: 6px; }
+  .timer-bar-fill{ height:100%; background: var(--teal); transition: width 1s linear, background 0.3s ease; }
+  .timer-bar-fill.warn{ background: var(--danger); }
+
+  .sol-count-wrap{ margin-bottom: 10px; }
+  .sol-count{ text-align:center; font-size:11px; color: var(--muted); margin-top:6px; }
+  .sol-count b{ color: var(--accent); font-family:'IBM Plex Mono', monospace; font-size:13px; }
+
+  .answer-row{ display:flex; gap:6px; margin-bottom: 8px; direction:ltr; }
+  .answer-input{ flex:1; background: var(--panel2); border: 1px solid rgba(255,255,255,0.08); color: var(--text); font-family:'IBM Plex Mono', monospace; font-size:15px; padding: 9px 12px; border-radius: 4px; direction:ltr; text-align:left; caret-color: var(--accent); }
+
+  .pw-wrap{ position:relative; max-width:280px; margin:0 auto 8px; direction:ltr; }
+  .pw-wrap .answer-input{ width:100%; padding-inline-end:38px; margin:0; }
+  .pw-toggle{
+    position:absolute; top:0; bottom:0; inset-inline-end:0; width:36px;
+    background:none; border:none; cursor:pointer; font-size:16px; color: var(--muted);
+    display:flex; align-items:center; justify-content:center; padding:0;
+  }
+  .pw-toggle:hover{ color: var(--accent); }
+  .answer-input:focus{ outline:none; border-color: var(--accent); }
+
+  .op-keypad{ direction: ltr; display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin-bottom: 8px; }
+  .op-key{ min-width: 36px; height: 34px; padding: 0 8px; flex-shrink:0; background: var(--panel2); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: var(--teal); font-family:'IBM Plex Mono', monospace; font-size: 15px; font-weight:700; cursor:pointer; transition: transform 0.1s ease, background 0.15s ease, border-color 0.15s ease; }
+  .op-key:hover{ background:#24384a; border-color: var(--border); }
+  .op-key:active{ transform: scale(0.92); }
+  .op-key.erase{ color: var(--danger); }
+
+  .feedback{ text-align:center; font-size:12px; min-height: 18px; margin-bottom: 8px; font-weight:700; }
+  .feedback.ok{ color: var(--teal); }
+  .feedback.err{ color: var(--danger); }
+  .feedback.warn{ color: var(--accent); }
+
+  .hints-wrap{ text-align:center; margin-bottom: 8px; }
+  .hints-list{ display:grid; gap:5px; margin-top:6px; }
+  .hint-item{ background: rgba(201,138,63,0.08); border: 1px solid var(--border); border-radius: 3px; padding: 6px 10px; font-size:11px; color: var(--accent); text-align: start; }
+
+  .timeup{ text-align:center; padding: 12px; border-radius: 5px; background: rgba(192,87,75,0.08); border: 1px solid rgba(192,87,75,0.4); color: #e2a49b; margin-bottom: 10px; font-weight:700; font-size:13px; }
+
+  .log-wrap{ margin-top: 12px; }
+  .log-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; padding:0 4px; }
+  .log-head h2{ font-size:14px; margin:0; font-family:'STIX Two Text', serif; font-weight:600; font-style:italic; }
+  .count-chip{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--bg); background: var(--teal); padding: 2px 10px; border-radius: 3px; font-weight:700; }
+  .log-list{ display:grid; gap:6px; max-height: 22vh; overflow-y:auto; }
+  .log-item{ background: var(--panel2); border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; padding: 7px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .log-item .lround{ font-family:'IBM Plex Mono', monospace; font-size:10px; color: var(--muted); flex-shrink:0; }
+  .log-item .lexpr{ font-family:'IBM Plex Mono', monospace; font-size:12px; direction:ltr; unicode-bidi:isolate; color: var(--text); word-break: break-all; }
+  .log-empty{ text-align:center; color: var(--muted); font-size:12px; padding: 10px 0; }
+
+  footer{ text-align:center; margin-top: 24px; color: var(--muted); font-size:12px; }
+</style>
+</head>
+<body>
+
+<!-- ============ LANDING SCREEN ============ -->
+<div class="wrap" id="landingWrap">
+  <div class="landing">
+    <span class="floaty f1">∑</span>
+    <span class="floaty f2">÷</span>
+    <span class="floaty f3">π</span>
+    <span class="floaty f4">√</span>
+    <span class="floaty f5">∞</span>
+    <span class="floaty f6">×</span>
+    <div class="landing-badge">GAME · 6 DIGITS</div>
+    <h1 class="landing-title" id="landingTitle">الوصول إلى <span class="num">100</span><span class="en">GET TO 100</span></h1>
+    <p class="landing-sub" id="landingSub">لعبة أرقام سريعة تتحدى ذكاءك الحسابي — اجمع، اطرح، اضرب، اقسم، وارفع للقوة حتى تصل إلى 100 بالضبط</p>
+    <div class="lang-toggle" id="landLangToggle"></div>
+    <button class="start-btn" id="startBtn">ابدأ</button>
+    <button class="account-link" id="landingAccountBtn">👤 <span id="landingAccountLabel">تسجيل الدخول لحفظ تقدمك</span></button>
+  </div>
+</div>
+
+<!-- ============ ACCOUNT ============ -->
+<div class="wrap" id="accountWrap" style="display:none;">
+  <div class="landing" style="min-height:60vh; min-height:60dvh;">
+    <div class="landing-badge" id="accountBadge">ACCOUNT</div>
+    <h1 class="landing-title" id="accountTitle" style="font-size:clamp(20px,6vw,26px); margin-bottom:14px;">تسجيل الدخول</h1>
+
+    <div id="authFormWrap">
+      <input type="text" id="authUsername" placeholder="اسم المستخدم" class="answer-input" style="max-width:280px; margin:0 auto 8px; display:block; direction:ltr; text-align:left;" autocomplete="username">
+      <div class="pw-wrap">
+        <input type="password" id="authPassword" placeholder="كلمة المرور" class="answer-input" autocomplete="current-password">
+        <button type="button" class="pw-toggle" id="togglePw1">👁️</button>
+      </div>
+      <div class="pw-wrap" id="confirmPwWrap">
+        <input type="password" id="authPasswordConfirm" placeholder="تأكيد كلمة المرور" class="answer-input" autocomplete="new-password">
+        <button type="button" class="pw-toggle" id="togglePw2">👁️</button>
+      </div>
+      <div id="authError" style="color:var(--danger); font-size:12px; margin-bottom:10px; min-height:16px;"></div>
+      <div class="controls" style="margin-bottom:6px;">
+        <button class="btn-primary" id="authLoginBtn">تسجيل الدخول</button>
+        <button class="btn-ghost" id="authSignupBtn">إنشاء حساب</button>
+      </div>
+    </div>
+
+    <div id="profileWrap" style="display:none;">
+      <p id="profileWelcome" style="color:var(--muted); font-size:13px; margin-bottom:12px;"></p>
+      <div class="rb-list" id="profileStats" style="max-width:320px; margin:0 auto 14px;"></div>
+      <button class="btn-ghost" id="authLogoutBtn">تسجيل الخروج</button>
+    </div>
+
+    <button class="start-btn" id="accountBackBtn" style="margin-top:18px; font-size:13px; padding:9px 26px;">رجوع</button>
+  </div>
+</div>
+
+<!-- ============ MAIN APP ============ -->
+<div class="wrap" id="appWrap" style="display:none;">
+  <header class="title-block">
+    <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+    <div class="user-banner" id="userBanner" style="display:none;">👤 <span id="userBannerName"></span></div>
+    <div class="header-top">
+      <div class="eyebrow" id="eyebrow">SPEC · 6 DIGITS = 100</div>
+      <button class="lang-single-btn" id="langSingleBtn">🌐 <span id="langSingleBtnCode">AR</span></button>
+      <button class="lang-single-btn" id="headerAccountBtn">👤</button>
+    </div>
+    <h1><span id="appTitle">الوصول إلى</span> <span class="num">100</span></h1>
+    <p id="headerSubtitle">اختر ستة أرقام بنفسك بالترتيب الذي تريده، ودع المحرك يبحث عن كل طريقة ممكنة للوصول إلى العدد 100</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" id="tabFree">🧮 <span id="tabFreeLabel">الوضع الحر</span></button>
+    <button class="tab-btn" id="tabChallenge">⏱️ <span id="tabChallengeLabel">وضع التحدي</span></button>
+    <button class="tab-btn" id="tabStart">🏆 <span id="tabStartLabel">ابدأ التحدي</span></button>
+  </div>
+
+  <!-- ---------- FREE MODE ---------- -->
+  <div class="view active" id="viewFree">
+    <div class="board"><span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+      <div class="tiles" id="tiles" dir="ltr"></div>
+      <div class="goal-row">
+        <span id="sixDigitsLabel">الأرقام السّتة</span>
+        <span class="arrow">→</span>
+        <span class="goal">100</span>
+      </div>
+      <div class="keypad-wrap">
+        <div class="keypad-label" id="pickDigitsLabel">اختر الأرقام بالترتيب الذي تريده (0 إلى 9)</div>
+        <div class="keypad" id="keypad"></div>
+      </div>
+      <div class="controls">
+        <button class="btn-ghost" id="btnBack">⌫ <span id="backBtnLabel">مسح الأخير</span></button>
+        <button class="btn-ghost" id="btnClear"><span id="clearBtnLabel">مسح الكل</span></button>
+        <button class="btn-primary" id="btnRandom">🎲 <span id="randomBtnLabel">تعبئة عشوائية</span></button>
+      </div>
+      <button class="rules-toggle" id="freeRulesToggle">ℹ️ <span id="rulesToggleLabel1">القواعد</span></button>
+      <div class="rules" id="freeRules">
+        العمليات المسموحة: <span class="ops">+ − × ÷ ^</span> · الأقواس مسموحة · يمكن دمج رقمين أو أكثر لتكوين عدد واحد ·
+        <b>ترتيب الأرقام الذي تختاره لا يتغيّر أبدًا</b>
+      </div>
+    </div>
+    <div class="results" id="results"></div>
+  </div>
+
+  <!-- ---------- CHALLENGE MODE ---------- -->
+  <div class="view" id="viewChallenge">
+    <div class="board"><span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+
+      <div id="chActive">
+        <div class="tiles" id="chTiles" dir="ltr"></div>
+        <div class="goal-row">
+          <span id="sixDigitsLabel2">الأرقام السّتة</span>
+          <span class="arrow">→</span>
+          <span class="goal">100</span>
+        </div>
+
+        <div class="sol-count-wrap">
+          <div class="sol-count"><span id="solCountLabel">عدد الحلول الممكنة لهذه الأرقام:</span> <b id="chSolCount">…</b></div>
+        </div>
+
+        <div id="challengeBody"></div>
+
+        <div class="controls">
+          <button class="btn-ghost" id="btnSameDigits">🔁 <span id="retrySameLabel">إعادة المحاولة بنفس الأرقام</span></button>
+          <button class="btn-primary" id="btnChallengeRestart">🎲 <span id="newDigitsLabel">أرقام جديدة</span></button>
+        </div>
+      </div>
+
+      <button class="rules-toggle" id="challengeRulesToggle">ℹ️ <span id="rulesToggleLabel2">القواعد</span></button>
+      <div class="rules" id="challengeRules">
+        اضغط على الأرقام والعمليات <span class="ops">+ − × ÷ ^ ( )</span> لإدراجها في معادلتك مباشرة، دون الحاجة للوحة مفاتيح الهاتف
+      </div>
+    </div>
+
+    <div class="log-wrap">
+      <div class="log-head"><h2 id="logHeading">الحلول المسجَّلة</h2><span class="count-chip" id="logCount">0</span></div>
+      <div class="log-list" id="logList"><div class="log-empty" id="logEmptyMsg">لم تُسجَّل أي حلول بعد — ابدأ الجولة!</div></div>
+    </div>
+  </div>
+
+  <!-- ---------- START THE CHALLENGE ---------- -->
+  <div class="view" id="viewStart">
+    <div class="board"><span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+
+      <div id="scSetup">
+        <div id="scStepPlayers">
+          <div class="keypad-label" id="scPlayersHeading">عدد اللاعبين</div>
+          <div class="diff-cards">
+            <div class="diff-card" data-players="1" id="scPlayers1">
+              <div class="d-icon">👤</div>
+              <div class="d-title" id="scPlayers1Title">لاعب واحد</div>
+            </div>
+            <div class="diff-card" data-players="2" id="scPlayers2">
+              <div class="d-icon">👥</div>
+              <div class="d-title" id="scPlayers2Title">لاعبان</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="scStepDiff" style="margin-top:6px;">
+          <div class="keypad-label" id="scDiffHeading">اختر مستوى التحدي</div>
+          <div class="diff-cards">
+            <div class="diff-card" data-diff="easy" id="scDiffEasy">
+              <div class="d-icon">🟢</div>
+              <div class="d-title" id="scDiffEasyTitle">سهل</div>
+            </div>
+            <div class="diff-card" data-diff="medium" id="scDiffMedium">
+              <div class="d-icon">🟠</div>
+              <div class="d-title" id="scDiffMediumTitle">متوسط</div>
+            </div>
+            <div class="diff-card hard" data-diff="hard" id="scDiffHard">
+              <div class="d-icon">🔴</div>
+              <div class="d-title" id="scDiffHardTitle">صعب</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="scStepDuration" style="margin-top:6px;">
+          <div class="keypad-label" id="scTimingHeading">مدة التحدي</div>
+          <div class="diff-cards" id="scDurationRow">
+            <div class="diff-card" data-dur="180" id="scDur3">
+              <div class="d-title">3</div>
+              <div class="d-time" id="scDurMinLabel1">دقائق</div>
+            </div>
+            <div class="diff-card" data-dur="300" id="scDur5">
+              <div class="d-title">5</div>
+              <div class="d-time" id="scDurMinLabel2">دقائق</div>
+            </div>
+            <div class="diff-card" data-dur="420" id="scDur7">
+              <div class="d-title">7</div>
+              <div class="d-time" id="scDurMinLabel3">دقائق</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="scStepCount" style="margin-top:6px;">
+          <div class="keypad-label" id="scCountHeading">عدد الاقتراحات</div>
+          <div class="diff-cards" id="scCountRow">
+            <div class="diff-card" data-count="3" id="scCount3">
+              <div class="d-title">3</div>
+              <div class="d-time" id="scCountLabel1">اقتراحات</div>
+            </div>
+            <div class="diff-card" data-count="5" id="scCount5">
+              <div class="d-title">5</div>
+              <div class="d-time" id="scCountLabel2">اقتراحات</div>
+            </div>
+            <div class="diff-card" data-count="7" id="scCount7">
+              <div class="d-title">7</div>
+              <div class="d-time" id="scCountLabel3">اقتراحات</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls" id="scStartWrap" style="display:none; margin-top:14px;">
+          <button class="btn-primary" id="scStartBtn">🏁 <span id="scStartBtnLabel">ابدأ التحدي</span></button>
+        </div>
+        <div class="controls" style="margin-top:10px;">
+          <button class="btn-ghost" id="scEnableSoundBtn" style="font-size:12px;padding:8px 14px;">🔊 <span id="scEnableSoundLabel">فعّل صوت العد التنازلي</span></button>
+        </div>
+      </div>
+
+      <div id="scGenerating" style="display:none;">
+        <div class="loading" id="scGeneratingMsg">جارٍ تجهيز التحدي <span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+
+      <div id="scActive" style="display:none;">
+        <div class="sc-progress" id="scProgress"></div>
+        <div class="tiles" id="scTiles" dir="ltr"></div>
+        <div class="goal-row">
+          <span id="sixDigitsLabel3">الأرقام السّتة</span>
+          <span class="arrow">→</span>
+          <span class="goal">100</span>
+        </div>
+        <div class="timer-wrap" id="scTimerWrap" style="display:none;">
+          <div class="timer-display" id="scTimerDisplay">05:00</div>
+          <div class="timer-bar"><div class="timer-bar-fill" id="scTimerBarFill" style="width:100%"></div></div>
+        </div>
+        <div id="scBody"></div>
+        <div class="controls" style="margin-top:8px;">
+          <button class="btn-ghost" id="scStopBtn">⏹ <span id="scStopBtnLabel">إيقاف التحدي وتغيير الإعدادات</span></button>
+        </div>
+      </div>
+
+      <div id="scResult" style="display:none;"></div>
+
+    </div>
+  </div>
+
+  <footer id="footerNote">كل الحلول محسوبة محليًا في متصفحك — لا تُرسَل أي بيانات لأي خادم إلا عند تسجيل الدخول لحفظ تقدمك</footer>
+</div>
+
+<script>
+window.addEventListener('error', function(e){
+  if(e && e.message && !window.fbLoadError) window.fbLoadError = e.message;
+}, true);
+window.addEventListener('unhandledrejection', function(e){
+  if(e && e.reason && !window.fbLoadError){
+    window.fbLoadError = (e.reason.message || String(e.reason));
+  }
+});
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  signOut, onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFirestore, doc, getDoc, setDoc, updateDoc, increment, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAmnCWlNm-sWKc8g-e7_cOUsUDrN45NaWQ",
+  authDomain: "get-the-100.firebaseapp.com",
+  projectId: "get-the-100",
+  storageBucket: "get-the-100.firebasestorage.app",
+  messagingSenderId: "509609924735",
+  appId: "1:509609924735:web:e38c30d3b3e0f6f935874a",
+  measurementId: "G-LL3CFGKC95"
+};
+
+let fbApp, auth, db;
+try{
+  fbApp = initializeApp(firebaseConfig);
+  auth = getAuth(fbApp);
+  db = getFirestore(fbApp);
+}catch(e){
+  window.fbLoadError = 'init: ' + (e && e.message ? e.message : String(e));
+}
+
+function statsDocRef(uid){
+  return doc(db, 'userStats', uid);
+}
+function usernameToEmail(username){
+  const normalized = username.trim().toLowerCase();
+  const utf8Bytes = new TextEncoder().encode(normalized);
+  let binary = '';
+  utf8Bytes.forEach(b => binary += String.fromCharCode(b));
+  const encoded = btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  return 'u' + encoded + '@reach100-users.app';
+}
+async function ensureStatsDoc(user, username){
+  const ref = statsDocRef(user.uid);
+  const snap = await getDoc(ref);
+  if(!snap.exists()){
+    await setDoc(ref, {
+      username: username || '',
+      challengesPlayed: 0,
+      suggestionsSolved: 0,
+      suggestionsTotal: 0,
+      perfectRuns: 0,
+      createdAt: serverTimestamp(),
+      lastPlayedAt: serverTimestamp()
+    });
+  }
+}
+
+if(fbApp){
+  window.FB = {
+    async signUp(username, password){
+      const email = usernameToEmail(username);
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await ensureStatsDoc(cred.user, username.trim());
+      return cred.user;
+    },
+    async logIn(username, password){
+      const email = usernameToEmail(username);
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      await ensureStatsDoc(cred.user, username.trim());
+      return cred.user;
+    },
+    async logOut(){
+      await signOut(auth);
+    },
+    async loadStats(uid){
+      const snap = await getDoc(statsDocRef(uid));
+      return snap.exists() ? snap.data() : null;
+    },
+    async recordRoundResult(uid, solvedCount, total, isPerfect){
+      const ref = statsDocRef(uid);
+      await updateDoc(ref, {
+        challengesPlayed: increment(1),
+        suggestionsSolved: increment(solvedCount),
+        suggestionsTotal: increment(total),
+        perfectRuns: increment(isPerfect ? 1 : 0),
+        lastPlayedAt: serverTimestamp()
+      });
+    }
+  };
+
+  onAuthStateChanged(auth, (user)=>{
+    if(typeof window.onFbAuthChanged === 'function'){
+      window.onFbAuthChanged(user);
+    }
+  });
+}
+</script>
+
+<script>
+/* ================= i18n ================= */
+const T = {
+  ar: {
+    dir:'rtl', lang:'ar',
+    landingSub:'لعبة أرقام سريعة تتحدى ذكاءك الحسابي — اجمع، اطرح، اضرب، اقسم، وارفع للقوة حتى تصل إلى 100 بالضبط',
+    startBtn:'ابدأ',
+    appTitle:'الوصول إلى',
+    tabFree:'الوضع الحر', tabChallenge:'تدريبات يومية', tabStart:'ابدأ التحدي',
+    scDiffHeading:'اختر مستوى التحدي',
+    scDiffEasyTitle:'سهل', scDiffEasySub:'حل مباشر بالجمع والطرح',
+    scDiffMediumTitle:'متوسط', scDiffMediumSub:'يحتاج ضربًا أو قسمة',
+    scDiffHardTitle:'صعب', scDiffHardSub:'يحتاج دمج أرقام أو قوى أو إشارة سالبة',
+    scTimingHeading:'مدة التحدي',
+    scCountHeading:'عدد الاقتراحات', scCountLabel:'اقتراحات', scBackBtn:'رجوع',
+    scPlayersHeading:'عدد اللاعبين', scPlayers1Title:'لاعب واحد', scPlayers2Title:'لاعبان',
+    scPlayerLabel:(p)=>`اللاعب ${p}`,
+    scPlayerWonRound:(p)=>`🏆 اللاعب ${p} فاز بهذا الاقتراح!`,
+    scRaceWinner:(p,a,b)=>`🏆 اللاعب ${p} يفوز بالتحدي! (النتيجة ${a} - ${b})`,
+    scRaceTie:(n,total)=>`🤝 تعادل! كلاهما حلّ ${n} من ${total}`,
+    scRaceWinnerByTime:(p,n,total)=>`🏆 اللاعب ${p} يفوز! تعادل الاثنان في عدد الحلول (${n} من ${total})، لكنه أنهى بوقت أقل`,
+    scNoSolutionFound:'لم يُحل هذا الاقتراح',
+    ratingPerfect:'🏆 أداء مثالي! أتقنت التحدي بالكامل',
+    ratingExcellent:'🌟 أداء ممتاز! قريب جدًا من الإتقان الكامل',
+    ratingGood:'👍 أداء جيد جدًا! استمر بهذا التقدم',
+    ratingFair:'💪 أداء لا بأس به! كل تحدٍ يقوّي مهاراتك',
+    ratingStart:'🌱 بداية طيبة! واصل المحاولة وستتحسن مع كل جولة',
+    ratingTryAgain:'🔄 لا تستسلم! حتى أفضل اللاعبين بدأوا من الصفر — جرّب مرة أخرى',
+    acctSignInPrompt:'تسجيل الدخول لحفظ تقدمك',
+    acctSignedInAs:(email)=>`مسجَّل الدخول: ${email}`,
+    acctTitle:'تسجيل الدخول',
+    acctBadge:'الحساب',
+    acctEmailPlaceholder:'البريد الإلكتروني',
+    acctPasswordPlaceholder:'كلمة المرور',
+    acctLoginBtn:'تسجيل الدخول',
+    acctSignupBtn:'إنشاء حساب',
+    acctLogoutBtn:'تسجيل الخروج',
+    acctBackBtn:'رجوع',
+    acctWelcome:(email)=>`مرحبًا، ${email}`,
+    acctChallengesPlayed:'عدد الجولات الملعوبة',
+    acctSuggestionsSolved:'الاقتراحات المحلولة',
+    acctPerfectRuns:'جولات مثالية',
+    acctLoadingStats:'جارِ تحميل الإحصائيات...',
+    acctFillBoth:'الرجاء إدخال اسم المستخدم وكلمة المرور',
+    acctConfirmPasswordPlaceholder:'تأكيد كلمة المرور',
+    acctPasswordMismatch:'كلمتا المرور غير متطابقتين',
+    acctFillAll:'الرجاء إدخال اسم المستخدم والبريد الإلكتروني وكلمة المرور',
+    acctUsernamePlaceholder:'اسم المستخدم',
+    acctWeakPassword:'كلمة المرور يجب أن تتكون من ٦ رموز على الأقل وتحتوي على أحرف وأرقام معًا',
+    acctAuthError:(code)=>`حدث خطأ: ${code}`,
+    scPassPhone:(p)=>`مرّر الهاتف للاعب ${p} واضغط ابدأ عندما يصبح جاهزًا`,
+    scTurnStartBtn:'ابدأ',
+    scDurMinLabel:'دقائق',
+    scStartBtn:'ابدأ التحدي',
+    scGenerating:'جارٍ تجهيز التحدي',
+    scSuggestionLabel:(i,total)=>`الاقتراح ${i} من ${total}`,
+    scSuccessTitle:'أكملت التحدي! 🎉',
+    scSuccessSub:(diff,n)=>`أنجزت الاقتراحات الـ${n} لمستوى "${diff}" بنجاح`,
+    scFailTitle:'⏰ انتهى الوقت!',
+    scFailSub:(n,total)=>`لم تكمل التحدي في الوقت المحدد — حللت ${n} من ${total} اقتراحات`,
+    scRetryBtn:'إعادة المحاولة',
+    scChangeSettingsBtn:'تغيير الإعدادات',
+    scEnableSound:'فعّل صوت العد التنازلي', scSoundOk:'يعمل الصوت ✓', scSoundFailed:'تعذّر تشغيل الصوت في هذا المتصفح',
+    scStopBtn:'إيقاف التحدي وتغيير الإعدادات',
+    scFoundMsg:'✅ صحيح! سجّلناه — اكتب حلًا آخر إذا أردت، أو انتقل لاقتراح آخر',
+    scNextBtn:'التالي',
+    scPrevBtn:'السابق',
+    freeSubtitle:'اختر ستة أرقام بنفسك بالترتيب الذي تريده، ودع المحرك يبحث عن كل طريقة ممكنة للوصول إلى العدد 100',
+    challengeSubtitleIdle:'ستُختار لك ستة أرقام عشوائية، وحاول إيجاد أكبر عدد ممكن من الحلول للوصول إلى 100 في وقتك الخاص',
+    challengeSubtitleActive:'اضغط على الأرقام والعمليات مباشرة لكتابة معادلتك — بدون أي وقت محدد',
+    sixDigits:'الأرقام السّتة',
+    pickDigits:'اختر الأرقام بالترتيب الذي تريده (0 إلى 9)',
+    backBtn:'مسح الأخير', clearBtn:'مسح الكل', randomBtn:'تعبئة عشوائية',
+    freeRules:'العمليات المسموحة: + − × ÷ ^ · الأقواس مسموحة · يمكن دمج رقمين أو أكثر لتكوين عدد واحد · ',
+    freeRulesBold:'ترتيب الأرقام الذي تختاره لا يتغيّر أبدًا',
+    waitingForDigits:'اختر 6 أرقام من لوحة الأزرار أعلاه لبدء البحث',
+    searching:'جارٍ البحث عن كل الحلول الممكنة',
+    noSolutions:'لا توجد حلول لهذه الأرقام',
+    noSolutionsSub:'لا يمكن الوصول إلى 100 من هذه الأرقام الستة بأي ترتيب للعمليات — جرّب أرقامًا جديدة',
+    modeCount:'عدد الحلول', modeOne:'إظهار حل واحد', modeAll:'إظهار كل الحلول',
+    solutionsCountLabel:'حل ممكن للوصول إلى 100',
+    shuffleBtn:'حل آخر',
+    retrySame:'إعادة المحاولة بنفس الأرقام',
+    newDigits:'أرقام جديدة',
+    solCountLabel:'عدد الحلول الممكنة لهذه الأرقام:',
+    answerPlaceholder:'مثال: 1+2+3+4+5+6',
+    checkBtn:'تحقّق',
+    correctMsg:'✅ صحيح! 100 بالضبط — جرّب تجد حلًا آخر بنفس الأرقام، أو اطلب أرقامًا جديدة',
+    dupMsg:'⚠️ هذا الحل مكتوب مسبقًا — اكتب حلًا آخر',
+    errPrefix:'❌ ',
+    errWrongResult:(v)=>`❌ النتيجة = ${v} وليست 100`,
+    errBadChars:'يحتوي على رموز غير مسموحة (اسمح فقط بالأرقام و + − × ÷ ^ ())',
+    errDigitsMismatch:'يجب استخدام كل الأرقام الستة بنفس ترتيبها بالضبط',
+    errLeadingZero:'لا يسمح بصفر بادئ في رقم مكوّن من أكثر من خانة (مثل 05)',
+    errIncomplete:'تعبير غير مكتمل', errUnclosedParen:'قوس غير مغلق', errInvalid:'تعبير غير صالح',
+    errUndefined:'العملية غير معرّفة (مثل القسمة على صفر)',
+    errEmpty:'اكتب معادلة أولاً',
+    hintBtn:'تلميح', hintPreparing:'جارٍ التحضير...', hintNoSolutions:'لا يوجد حل لهذه الأرقام',
+    hintAllFound:'وجدت كل الحلول! 🎉',
+    hintNoMore:'لا مزيد من التلميحات لهذه الجولة',
+    hintRemaining:(n)=>`تلميح (${n} متبقّية)`,
+    hintParens:(n)=>`🔎 تلميح ${n}: وضعنا القوسين في مكانهما — أكمل الباقي`,
+    hintOp:(n)=>`🔎 تلميح ${n}: وضعنا إشارة في مكانها الصحيح — أكمل الباقي`,
+    logHeading:'الحلول المسجَّلة', logEmpty:'لم تُسجَّل أي حلول بعد — ابدأ الجولة!',
+    footerNote:'كل الحلول محسوبة محليًا في متصفحك — لا تُرسَل أي بيانات لأي خادم',
+    rulesToggle:'القواعد',
+    challengeRules:'اضغط على الأرقام والعمليات <span class="ops">+ − × ÷ ^ ( )</span> لإدراجها في معادلتك مباشرة، دون الحاجة للوحة مفاتيح الهاتف',
+  },
+  en: {
+    dir:'ltr', lang:'en',
+    landingSub:'A fast number game that challenges your math skills — add, subtract, multiply, divide, and use powers to reach exactly 100',
+    startBtn:'Start',
+    appTitle:'Get to',
+    tabFree:'Free Mode', tabChallenge:'Daily Drills', tabStart:'Start the Challenge',
+    scDiffHeading:'Choose a challenge level',
+    scDiffEasyTitle:'Easy', scDiffEasySub:'Solvable with just + and −',
+    scDiffMediumTitle:'Medium', scDiffMediumSub:'Needs × or ÷',
+    scDiffHardTitle:'Hard', scDiffHardSub:'Needs merged digits, powers, or a negative sign',
+    scTimingHeading:'Challenge duration',
+    scCountHeading:'Number of suggestions', scCountLabel:'suggestions', scBackBtn:'Back',
+    scPlayersHeading:'Number of players', scPlayers1Title:'One player', scPlayers2Title:'Two players',
+    scPlayerLabel:(p)=>`Player ${p}`,
+    scPlayerWonRound:(p)=>`🏆 Player ${p} wins this suggestion!`,
+    scRaceWinner:(p,a,b)=>`🏆 Player ${p} wins the challenge! (Score ${a} - ${b})`,
+    scRaceTie:(n,total)=>`🤝 It's a tie! Both solved ${n} of ${total}`,
+    scRaceWinnerByTime:(p,n,total)=>`🏆 Player ${p} wins! Both solved ${n} of ${total}, but finished faster`,
+    scNoSolutionFound:'Not solved',
+    ratingPerfect:'🏆 Perfect run! You mastered this challenge',
+    ratingExcellent:'🌟 Excellent! Very close to a perfect run',
+    ratingGood:'👍 Great job! Keep up this progress',
+    ratingFair:'💪 Not bad at all! Every challenge sharpens your skills',
+    ratingStart:'🌱 Good start! You will get better with every round',
+    ratingTryAgain:'🔄 Don\'t give up! Even the best players started at zero — try again',
+    acctSignInPrompt:'Sign in to save your progress',
+    acctSignedInAs:(email)=>`Signed in: ${email}`,
+    acctTitle:'Sign In',
+    acctBadge:'ACCOUNT',
+    acctEmailPlaceholder:'Email',
+    acctPasswordPlaceholder:'Password',
+    acctLoginBtn:'Sign In',
+    acctSignupBtn:'Create Account',
+    acctLogoutBtn:'Sign Out',
+    acctBackBtn:'Back',
+    acctWelcome:(email)=>`Welcome, ${email}`,
+    acctChallengesPlayed:'Challenges played',
+    acctSuggestionsSolved:'Suggestions solved',
+    acctPerfectRuns:'Perfect runs',
+    acctLoadingStats:'Loading stats...',
+    acctFillBoth:'Please enter both username and password',
+    acctConfirmPasswordPlaceholder:'Confirm password',
+    acctPasswordMismatch:'Passwords do not match',
+    acctFillAll:'Please enter a username, email and password',
+    acctUsernamePlaceholder:'Username',
+    acctWeakPassword:'Password must be at least 6 characters and include both letters and numbers',
+    acctAuthError:(code)=>`Error: ${code}`,
+    scPassPhone:(p)=>`Pass the phone to Player ${p} and tap start when ready`,
+    scTurnStartBtn:'Start',
+    scDurMinLabel:'minutes',
+    scStartBtn:'Start the challenge',
+    scGenerating:'Preparing the challenge',
+    scSuggestionLabel:(i,total)=>`Suggestion ${i} of ${total}`,
+    scSuccessTitle:'Challenge complete! 🎉',
+    scSuccessSub:(diff,n)=>`You solved all ${n} "${diff}" suggestions`,
+    scFailTitle:"⏰ Time's up!",
+    scFailSub:(n,total)=>`You didn't finish in time — you solved ${n} of ${total} suggestions`,
+    scRetryBtn:'Try again',
+    scChangeSettingsBtn:'Change settings',
+    scEnableSound:'Enable countdown sound', scSoundOk:'Sound works ✓', scSoundFailed:"Couldn't play sound in this browser",
+    scStopBtn:'Stop challenge & change settings',
+    scFoundMsg:"✅ Correct! Saved it — write another one if you like, or move to another suggestion",
+    scNextBtn:'Next',
+    scPrevBtn:'Previous',
+    freeSubtitle:'Pick six digits yourself, in whatever order you like, and let the engine find every way to reach 100',
+    challengeSubtitleIdle:"You'll get six random digits — try to find as many solutions reaching 100 as you can, at your own pace",
+    challengeSubtitleActive:'Tap the digits and operations to write your equation — no time limit',
+    sixDigits:'The six digits',
+    pickDigits:'Pick the digits in the order you want (0 to 9)',
+    backBtn:'Undo last', clearBtn:'Clear all', randomBtn:'Random fill',
+    freeRules:'Allowed operations: + − × ÷ ^ · Parentheses allowed · Two or more digits may be combined into one number · ',
+    freeRulesBold:'The order you pick never changes',
+    waitingForDigits:'Pick 6 digits from the keypad above to start searching',
+    searching:'Searching for every possible solution',
+    noSolutions:'No solutions for these digits',
+    noSolutionsSub:'100 cannot be reached from these six digits with any arrangement of operations — try new digits',
+    modeCount:'Solution count', modeOne:'Show one solution', modeAll:'Show all solutions',
+    solutionsCountLabel:'possible solutions reaching 100',
+    shuffleBtn:'Another one',
+    retrySame:'Retry with same digits',
+    newDigits:'New digits',
+    solCountLabel:'Possible solutions for these digits:',
+    answerPlaceholder:'e.g. 1+2+3+4+5+6',
+    checkBtn:'Check',
+    correctMsg:'✅ Correct! Exactly 100 — try finding another solution with the same digits, or ask for new ones',
+    dupMsg:"⚠️ You've already submitted this exact solution — write a different one",
+    errPrefix:'❌ ',
+    errWrongResult:(v)=>`❌ Result = ${v}, not 100`,
+    errBadChars:"Contains characters that aren't allowed (only digits and + − × ÷ ^ ())",
+    errDigitsMismatch:'You must use all six digits, in exactly the same order',
+    errLeadingZero:'A number with more than one digit cannot start with 0 (like 05)',
+    errIncomplete:'Incomplete expression', errUnclosedParen:'Unclosed parenthesis', errInvalid:'Invalid expression',
+    errUndefined:'Undefined operation (like division by zero)',
+    errEmpty:'Write an equation first',
+    hintBtn:'Hint', hintPreparing:'Preparing...', hintNoSolutions:'No solution for these digits',
+    hintAllFound:"You've found them all! 🎉",
+    hintNoMore:'No more hints for this round',
+    hintRemaining:(n)=>`Hint (${n} left)`,
+    hintParens:(n)=>`🔎 Hint ${n}: we placed the parentheses — finish the rest`,
+    hintOp:(n)=>`🔎 Hint ${n}: we placed an operator in its correct spot — finish the rest`,
+    logHeading:'Recorded solutions', logEmpty:'No solutions recorded yet — start the round!',
+    footerNote:'Everything is computed locally in your browser — no data is sent to any server',
+    rulesToggle:'Rules',
+    challengeRules:'Tap the digits and operations <span class="ops">+ − × ÷ ^ ( )</span> to insert them into your equation directly, no phone keyboard needed',
+  },
+  fr: {
+    dir:'ltr', lang:'fr',
+    landingSub:"Un jeu de calcul rapide qui teste vos compétences en maths — additionnez, soustrayez, multipliez, divisez et utilisez les puissances pour atteindre exactement 100",
+    startBtn:'Commencer',
+    appTitle:'Atteindre',
+    tabFree:'Mode libre', tabChallenge:'Exercices quotidiens', tabStart:'Lancer le défi',
+    scDiffHeading:'Choisissez un niveau de défi',
+    scDiffEasyTitle:'Facile', scDiffEasySub:'Se résout avec + et − seulement',
+    scDiffMediumTitle:'Moyen', scDiffMediumSub:'Nécessite × ou ÷',
+    scDiffHardTitle:'Difficile', scDiffHardSub:'Nécessite de combiner des chiffres, des puissances ou un signe négatif',
+    scTimingHeading:'Durée du défi',
+    scCountHeading:'Nombre de propositions', scCountLabel:'propositions', scBackBtn:'Retour',
+    scPlayersHeading:'Nombre de joueurs', scPlayers1Title:'Un joueur', scPlayers2Title:'Deux joueurs',
+    scPlayerLabel:(p)=>`Joueur ${p}`,
+    scPlayerWonRound:(p)=>`🏆 Le joueur ${p} remporte cette proposition !`,
+    scRaceWinner:(p,a,b)=>`🏆 Le joueur ${p} remporte le défi ! (Score ${a} - ${b})`,
+    scRaceTie:(n,total)=>`🤝 Match nul ! Les deux ont résolu ${n} sur ${total}`,
+    scRaceWinnerByTime:(p,n,total)=>`🏆 Le joueur ${p} gagne ! Les deux ont résolu ${n} sur ${total}, mais il a fini plus vite`,
+    scNoSolutionFound:'Non résolu',
+    ratingPerfect:'🏆 Parcours parfait ! Défi totalement maîtrisé',
+    ratingExcellent:'🌟 Excellent ! Tout près de la perfection',
+    ratingGood:'👍 Très bon travail ! Continuez sur cette lancée',
+    ratingFair:'💪 Pas mal du tout ! Chaque défi affûte vos compétences',
+    ratingStart:'🌱 Bon début ! Vous progresserez à chaque manche',
+    ratingTryAgain:'🔄 N\'abandonnez pas ! Même les meilleurs ont commencé à zéro — réessayez',
+    acctSignInPrompt:'Connectez-vous pour sauvegarder votre progression',
+    acctSignedInAs:(email)=>`Connecté : ${email}`,
+    acctTitle:'Connexion',
+    acctBadge:'COMPTE',
+    acctEmailPlaceholder:'E-mail',
+    acctPasswordPlaceholder:'Mot de passe',
+    acctLoginBtn:'Se connecter',
+    acctSignupBtn:'Créer un compte',
+    acctLogoutBtn:'Se déconnecter',
+    acctBackBtn:'Retour',
+    acctWelcome:(email)=>`Bienvenue, ${email}`,
+    acctChallengesPlayed:'Défis joués',
+    acctSuggestionsSolved:'Suggestions résolues',
+    acctPerfectRuns:'Parcours parfaits',
+    acctLoadingStats:'Chargement des statistiques...',
+    acctFillBoth:'Veuillez saisir le nom d\'utilisateur et le mot de passe',
+    acctConfirmPasswordPlaceholder:'Confirmer le mot de passe',
+    acctPasswordMismatch:'Les mots de passe ne correspondent pas',
+    acctFillAll:'Veuillez saisir un nom d\'utilisateur, un e-mail et un mot de passe',
+    acctUsernamePlaceholder:'Nom d\'utilisateur',
+    acctWeakPassword:'Le mot de passe doit contenir au moins 6 caractères, avec des lettres et des chiffres',
+    acctAuthError:(code)=>`Erreur : ${code}`,
+    scPassPhone:(p)=>`Passez le téléphone au joueur ${p} et appuyez sur démarrer quand il est prêt`,
+    scTurnStartBtn:'Démarrer',
+    scDurMinLabel:'minutes',
+    scStartBtn:'Lancer le défi',
+    scGenerating:'Préparation du défi',
+    scSuggestionLabel:(i,total)=>`Proposition ${i} sur ${total}`,
+    scSuccessTitle:'Défi réussi ! 🎉',
+    scSuccessSub:(diff,n)=>`Vous avez résolu les ${n} propositions du niveau "${diff}"`,
+    scFailTitle:'⏰ Temps écoulé !',
+    scFailSub:(n,total)=>`Vous n'avez pas terminé à temps — vous avez résolu ${n} proposition(s) sur ${total}`,
+    scRetryBtn:'Réessayer',
+    scChangeSettingsBtn:'Modifier les réglages',
+    scEnableSound:'Activer le son du compte à rebours', scSoundOk:'Le son fonctionne ✓', scSoundFailed:"Impossible de jouer le son dans ce navigateur",
+    scStopBtn:'Arrêter le défi et modifier les réglages',
+    scFoundMsg:"✅ Correct ! Solution enregistrée — écrivez-en une autre si vous voulez, ou passez à une autre proposition",
+    scNextBtn:'Suivant',
+    scPrevBtn:'Précédent',
+    freeSubtitle:"Choisissez vous-même six chiffres, dans l'ordre de votre choix, et laissez le moteur trouver toutes les façons d'atteindre 100",
+    challengeSubtitleIdle:"Vous recevrez six chiffres aléatoires — essayez de trouver autant de solutions que possible pour atteindre 100, à votre rythme",
+    challengeSubtitleActive:'Touchez les chiffres et les opérations pour écrire votre équation — sans limite de temps',
+    sixDigits:'Les six chiffres',
+    pickDigits:"Choisissez les chiffres dans l'ordre voulu (0 à 9)",
+    backBtn:'Annuler', clearBtn:'Tout effacer', randomBtn:'Remplissage aléatoire',
+    freeRules:'Opérations autorisées : + − × ÷ ^ · Parenthèses autorisées · Deux chiffres ou plus peuvent être combinés en un seul nombre · ',
+    freeRulesBold:"L'ordre choisi ne change jamais",
+    waitingForDigits:'Choisissez 6 chiffres sur le clavier ci-dessus pour lancer la recherche',
+    searching:'Recherche de toutes les solutions possibles',
+    noSolutions:'Aucune solution pour ces chiffres',
+    noSolutionsSub:"100 ne peut pas être atteint avec ces six chiffres, quel que soit l'arrangement des opérations — essayez d'autres chiffres",
+    modeCount:'Nombre de solutions', modeOne:'Afficher une solution', modeAll:'Afficher toutes les solutions',
+    solutionsCountLabel:'solutions possibles pour atteindre 100',
+    shuffleBtn:'Une autre',
+    retrySame:'Réessayer avec les mêmes chiffres',
+    newDigits:'Nouveaux chiffres',
+    solCountLabel:'Solutions possibles pour ces chiffres :',
+    answerPlaceholder:'ex. 1+2+3+4+5+6',
+    checkBtn:'Vérifier',
+    correctMsg:'✅ Correct ! Exactement 100 — essayez de trouver une autre solution avec les mêmes chiffres, ou demandez-en de nouveaux',
+    dupMsg:"⚠️ Vous avez déjà soumis exactement cette solution — écrivez-en une différente",
+    errPrefix:'❌ ',
+    errWrongResult:(v)=>`❌ Résultat = ${v}, pas 100`,
+    errBadChars:"Contient des caractères non autorisés (seulement les chiffres et + − × ÷ ^ ())",
+    errDigitsMismatch:'Vous devez utiliser les six chiffres, exactement dans le même ordre',
+    errLeadingZero:'Un nombre de plusieurs chiffres ne peut pas commencer par 0 (comme 05)',
+    errIncomplete:'Expression incomplète', errUnclosedParen:'Parenthèse non fermée', errInvalid:'Expression invalide',
+    errUndefined:'Opération non définie (comme une division par zéro)',
+    errEmpty:"Écrivez d'abord une équation",
+    hintBtn:'Indice', hintPreparing:'Préparation...', hintNoSolutions:'Aucune solution pour ces chiffres',
+    hintAllFound:'Vous les avez toutes trouvées ! 🎉',
+    hintNoMore:"Plus d'indices pour cette manche",
+    hintRemaining:(n)=>`Indice (${n} restant${n>1?'s':''})`,
+    hintParens:(n)=>`🔎 Indice ${n} : nous avons placé les parenthèses — terminez le reste`,
+    hintOp:(n)=>`🔎 Indice ${n} : nous avons placé un opérateur au bon endroit — terminez le reste`,
+    logHeading:'Solutions enregistrées', logEmpty:'Aucune solution enregistrée pour le moment — lancez la manche !',
+    footerNote:"Tout est calculé localement dans votre navigateur — aucune donnée n'est envoyée à un serveur",
+    rulesToggle:'Règles',
+    challengeRules:'Touchez les chiffres et les opérations <span class="ops">+ − × ÷ ^ ( )</span> pour les insérer directement dans votre équation, sans clavier du téléphone',
+  },
+  es: {
+    dir:'ltr', lang:'es',
+    landingSub:'Un juego de números rápido que pone a prueba tu habilidad matemática — suma, resta, multiplica, divide y usa potencias para llegar exactamente a 100',
+    startBtn:'Empezar',
+    appTitle:'Llegar a',
+    tabFree:'Modo libre', tabChallenge:'Ejercicios diarios', tabStart:'Iniciar el reto',
+    scDiffHeading:'Elige un nivel de reto',
+    scDiffEasyTitle:'Fácil', scDiffEasySub:'Se resuelve solo con + y −',
+    scDiffMediumTitle:'Medio', scDiffMediumSub:'Necesita × o ÷',
+    scDiffHardTitle:'Difícil', scDiffHardSub:'Necesita combinar dígitos, potencias o un signo negativo',
+    scTimingHeading:'Duración del reto',
+    scCountHeading:'Número de propuestas', scCountLabel:'propuestas', scBackBtn:'Atrás',
+    scPlayersHeading:'Número de jugadores', scPlayers1Title:'Un jugador', scPlayers2Title:'Dos jugadores',
+    scPlayerLabel:(p)=>`Jugador ${p}`,
+    scPlayerWonRound:(p)=>`🏆 ¡El jugador ${p} gana esta propuesta!`,
+    scRaceWinner:(p,a,b)=>`🏆 ¡El jugador ${p} gana el reto! (Marcador ${a} - ${b})`,
+    scRaceTie:(n,total)=>`🤝 ¡Empate! Ambos resolvieron ${n} de ${total}`,
+    scRaceWinnerByTime:(p,n,total)=>`🏆 ¡Gana el jugador ${p}! Ambos resolvieron ${n} de ${total}, pero terminó más rápido`,
+    scNoSolutionFound:'No resuelto',
+    ratingPerfect:'🏆 ¡Actuación perfecta! Dominaste el reto por completo',
+    ratingExcellent:'🌟 ¡Excelente! Muy cerca de la perfección',
+    ratingGood:'👍 ¡Muy buen trabajo! Sigue con ese progreso',
+    ratingFair:'💪 ¡Nada mal! Cada reto agudiza tus habilidades',
+    ratingStart:'🌱 ¡Buen comienzo! Mejorarás con cada ronda',
+    ratingTryAgain:'🔄 ¡No te rindas! Hasta los mejores empezaron de cero — inténtalo de nuevo',
+    acctSignInPrompt:'Inicia sesión para guardar tu progreso',
+    acctSignedInAs:(email)=>`Sesión iniciada: ${email}`,
+    acctTitle:'Iniciar sesión',
+    acctBadge:'CUENTA',
+    acctEmailPlaceholder:'Correo electrónico',
+    acctPasswordPlaceholder:'Contraseña',
+    acctLoginBtn:'Iniciar sesión',
+    acctSignupBtn:'Crear cuenta',
+    acctLogoutBtn:'Cerrar sesión',
+    acctBackBtn:'Atrás',
+    acctWelcome:(email)=>`Bienvenido, ${email}`,
+    acctChallengesPlayed:'Retos jugados',
+    acctSuggestionsSolved:'Sugerencias resueltas',
+    acctPerfectRuns:'Partidas perfectas',
+    acctLoadingStats:'Cargando estadísticas...',
+    acctFillBoth:'Por favor ingresa el nombre de usuario y la contraseña',
+    acctConfirmPasswordPlaceholder:'Confirmar contraseña',
+    acctPasswordMismatch:'Las contraseñas no coinciden',
+    acctFillAll:'Por favor ingresa un nombre de usuario, correo y contraseña',
+    acctUsernamePlaceholder:'Nombre de usuario',
+    acctWeakPassword:'La contraseña debe tener al menos 6 caracteres, con letras y números',
+    acctAuthError:(code)=>`Error: ${code}`,
+    scPassPhone:(p)=>`Pasa el teléfono al jugador ${p} y pulsa empezar cuando esté listo`,
+    scTurnStartBtn:'Empezar',
+    scDurMinLabel:'minutos',
+    scStartBtn:'Iniciar el reto',
+    scGenerating:'Preparando el reto',
+    scSuggestionLabel:(i,total)=>`Propuesta ${i} de ${total}`,
+    scSuccessTitle:'¡Reto completado! 🎉',
+    scSuccessSub:(diff,n)=>`Resolviste las ${n} propuestas del nivel "${diff}"`,
+    scFailTitle:'⏰ ¡Se acabó el tiempo!',
+    scFailSub:(n,total)=>`No terminaste a tiempo — resolviste ${n} de ${total} propuestas`,
+    scRetryBtn:'Intentar de nuevo',
+    scChangeSettingsBtn:'Cambiar ajustes',
+    scEnableSound:'Activar sonido de cuenta regresiva', scSoundOk:'El sonido funciona ✓', scSoundFailed:'No se pudo reproducir el sonido en este navegador',
+    scStopBtn:'Detener el reto y cambiar ajustes',
+    scFoundMsg:'✅ ¡Correcto! Guardado — escribe otra si quieres, o pasa a otra propuesta',
+    scNextBtn:'Siguiente',
+    scPrevBtn:'Anterior',
+    freeSubtitle:'Elige tú mismo seis dígitos, en el orden que prefieras, y deja que el motor encuentre todas las formas de llegar a 100',
+    challengeSubtitleIdle:'Recibirás seis dígitos al azar — intenta encontrar tantas soluciones como puedas para llegar a 100, a tu propio ritmo',
+    challengeSubtitleActive:'Toca los dígitos y las operaciones para escribir tu ecuación — sin límite de tiempo',
+    sixDigits:'Los seis dígitos',
+    pickDigits:'Elige los dígitos en el orden que quieras (0 a 9)',
+    backBtn:'Deshacer', clearBtn:'Borrar todo', randomBtn:'Relleno aleatorio',
+    freeRules:'Operaciones permitidas: + − × ÷ ^ · Se permiten paréntesis · Se pueden combinar dos o más dígitos en un solo número · ',
+    freeRulesBold:'El orden que elijas nunca cambia',
+    waitingForDigits:'Elige 6 dígitos del teclado de arriba para empezar a buscar',
+    searching:'Buscando todas las soluciones posibles',
+    noSolutions:'No hay soluciones para estos dígitos',
+    noSolutionsSub:'No se puede llegar a 100 con estos seis dígitos con ningún arreglo de operaciones — prueba con otros dígitos',
+    modeCount:'Número de soluciones', modeOne:'Mostrar una solución', modeAll:'Mostrar todas las soluciones',
+    solutionsCountLabel:'soluciones posibles para llegar a 100',
+    shuffleBtn:'Otra',
+    retrySame:'Reintentar con los mismos dígitos',
+    newDigits:'Nuevos dígitos',
+    solCountLabel:'Soluciones posibles para estos dígitos:',
+    answerPlaceholder:'ej. 1+2+3+4+5+6',
+    checkBtn:'Comprobar',
+    correctMsg:'✅ ¡Correcto! Exactamente 100 — intenta encontrar otra solución con los mismos dígitos, o pide unos nuevos',
+    dupMsg:'⚠️ Ya has enviado exactamente esta solución — escribe una diferente',
+    errPrefix:'❌ ',
+    errWrongResult:(v)=>`❌ Resultado = ${v}, no 100`,
+    errBadChars:'Contiene caracteres no permitidos (solo dígitos y + − × ÷ ^ ())',
+    errDigitsMismatch:'Debes usar los seis dígitos, exactamente en el mismo orden',
+    errLeadingZero:'Un número de más de una cifra no puede empezar con 0 (como 05)',
+    errIncomplete:'Expresión incompleta', errUnclosedParen:'Paréntesis sin cerrar', errInvalid:'Expresión no válida',
+    errUndefined:'Operación no definida (como dividir entre cero)',
+    errEmpty:'Escribe una ecuación primero',
+    hintBtn:'Pista', hintPreparing:'Preparando...', hintNoSolutions:'No hay solución para estos dígitos',
+    hintAllFound:'¡Las encontraste todas! 🎉',
+    hintNoMore:'No hay más pistas para esta ronda',
+    hintRemaining:(n)=>`Pista (quedan ${n})`,
+    hintParens:(n)=>`🔎 Pista ${n}: colocamos los paréntesis — completa el resto`,
+    hintOp:(n)=>`🔎 Pista ${n}: colocamos un operador en su lugar correcto — completa el resto`,
+    logHeading:'Soluciones registradas', logEmpty:'Aún no hay soluciones registradas — ¡empieza la ronda!',
+    footerNote:'Todo se calcula localmente en tu navegador — no se envían datos a ningún servidor',
+    rulesToggle:'Reglas',
+    challengeRules:'Toca los dígitos y las operaciones <span class="ops">+ − × ÷ ^ ( )</span> para insertarlos directamente en tu ecuación, sin necesidad del teclado del teléfono',
+  },
+  zh: {
+    dir:'ltr', lang:'zh',
+    landingSub:'一款考验心算能力的数字游戏——通过加、减、乘、除和乘方，凑出恰好等于100的结果',
+    startBtn:'开始',
+    appTitle:'凑到',
+    tabFree:'自由模式', tabChallenge:'每日练习', tabStart:'开始挑战',
+    scDiffHeading:'选择挑战难度',
+    scDiffEasyTitle:'简单', scDiffEasySub:'只用加减法即可解出',
+    scDiffMediumTitle:'中等', scDiffMediumSub:'需要用到乘法或除法',
+    scDiffHardTitle:'困难', scDiffHardSub:'需要组合数字、乘方或负号',
+    scTimingHeading:'挑战时长',
+    scCountHeading:'题目数量', scCountLabel:'道题', scBackBtn:'返回',
+    scPlayersHeading:'玩家人数', scPlayers1Title:'单人', scPlayers2Title:'双人',
+    scPlayerLabel:(p)=>`玩家${p}`,
+    scPlayerWonRound:(p)=>`🏆 玩家${p}赢得这一题！`,
+    scRaceWinner:(p,a,b)=>`🏆 玩家${p}赢得挑战！（比分 ${a} - ${b}）`,
+    scRaceTie:(n,total)=>`🤝 平局！两人都解出了${total}题中的${n}题`,
+    scRaceWinnerByTime:(p,n,total)=>`🏆 玩家${p}获胜！两人都解出了${total}题中的${n}题，但他用时更短`,
+    scNoSolutionFound:'未解出',
+    ratingPerfect:'🏆 完美表现！你完全掌握了这个挑战',
+    ratingExcellent:'🌟 非常出色！非常接近完美',
+    ratingGood:'👍 表现很好！继续保持这个进步',
+    ratingFair:'💪 还不错！每次挑战都在磨练你的技能',
+    ratingStart:'🌱 良好的开始！每一轮你都会进步',
+    ratingTryAgain:'🔄 别放弃！最优秀的玩家也是从零开始的 — 再试一次',
+    acctSignInPrompt:'登录以保存你的进度',
+    acctSignedInAs:(email)=>`已登录：${email}`,
+    acctTitle:'登录',
+    acctBadge:'账户',
+    acctEmailPlaceholder:'电子邮箱',
+    acctPasswordPlaceholder:'密码',
+    acctLoginBtn:'登录',
+    acctSignupBtn:'创建账户',
+    acctLogoutBtn:'退出登录',
+    acctBackBtn:'返回',
+    acctWelcome:(email)=>`欢迎，${email}`,
+    acctChallengesPlayed:'已完成挑战次数',
+    acctSuggestionsSolved:'已解出的题目',
+    acctPerfectRuns:'完美挑战次数',
+    acctLoadingStats:'正在加载统计数据...',
+    acctFillBoth:'请输入用户名和密码',
+    acctConfirmPasswordPlaceholder:'确认密码',
+    acctPasswordMismatch:'两次输入的密码不一致',
+    acctFillAll:'请输入用户名、电子邮箱和密码',
+    acctUsernamePlaceholder:'用户名',
+    acctWeakPassword:'密码至少需要6个字符，且必须同时包含字母和数字',
+    acctAuthError:(code)=>`出错了：${code}`,
+    scPassPhone:(p)=>`请把手机交给玩家${p}，准备好后点击开始`,
+    scTurnStartBtn:'开始',
+    scDurMinLabel:'分钟',
+    scStartBtn:'开始挑战',
+    scGenerating:'正在准备挑战',
+    scSuggestionLabel:(i,total)=>`第 ${i} 题（共${total}题）`,
+    scSuccessTitle:'挑战完成！🎉',
+    scSuccessSub:(diff,n)=>`你成功解出了"${diff}"难度的全部${n}道题`,
+    scFailTitle:'⏰ 时间到！',
+    scFailSub:(n,total)=>`未能在规定时间内完成挑战 — 你解出了 ${total} 题中的 ${n} 题`,
+    scRetryBtn:'再试一次',
+    scChangeSettingsBtn:'更改设置',
+    scEnableSound:'开启倒计时提示音', scSoundOk:'声音正常 ✓', scSoundFailed:'此浏览器无法播放声音',
+    scStopBtn:'停止挑战并更改设置',
+    scFoundMsg:'✅ 正确！已记录 — 如果愿意可以再写一个解法，或切换到其他题目',
+    scNextBtn:'下一题',
+    scPrevBtn:'上一题',
+    freeSubtitle:'按你喜欢的顺序自选六个数字，让引擎找出所有能凑到100的方法',
+    challengeSubtitleIdle:'系统会给你六个随机数字 — 按自己的节奏，尽量多找出几种凑到100的方法',
+    challengeSubtitleActive:'点击数字和运算符号来输入你的算式 — 没有时间限制',
+    sixDigits:'六个数字',
+    pickDigits:'按你想要的顺序选择数字（0到9）',
+    backBtn:'撤销上一步', clearBtn:'全部清除', randomBtn:'随机填充',
+    freeRules:'允许的运算：+ − × ÷ ^ · 允许使用括号 · 可以把两个或多个数字组合成一个数 · ',
+    freeRulesBold:'你选择的数字顺序永远不会改变',
+    waitingForDigits:'在上方键盘选择6个数字以开始搜索',
+    searching:'正在搜索所有可能的解法',
+    noSolutions:'这些数字没有解法',
+    noSolutionsSub:'无论怎样排列运算符号，这六个数字都无法凑出100 — 试试其他数字吧',
+    modeCount:'解法数量', modeOne:'显示一个解法', modeAll:'显示所有解法',
+    solutionsCountLabel:'种可能凑到100的解法',
+    shuffleBtn:'换一个',
+    retrySame:'用相同数字重试',
+    newDigits:'换一组数字',
+    solCountLabel:'这些数字的可能解法数：',
+    answerPlaceholder:'例如：1+2+3+4+5+6',
+    checkBtn:'检查',
+    correctMsg:'✅ 正确！刚好是100 — 可以试着用相同数字找另一个解法，或换一组新数字',
+    dupMsg:'⚠️ 你已经提交过完全相同的解法了 — 请换一个',
+    errPrefix:'❌ ',
+    errWrongResult:(v)=>`❌ 结果 = ${v}，不是100`,
+    errBadChars:'包含不允许的字符（只能使用数字和 + − × ÷ ^ ()）',
+    errDigitsMismatch:'必须按完全相同的顺序使用全部六个数字',
+    errLeadingZero:'多位数不能以0开头（例如05）',
+    errIncomplete:'算式不完整', errUnclosedParen:'括号未闭合', errInvalid:'算式无效',
+    errUndefined:'未定义的运算（例如除以零）',
+    errEmpty:'请先输入一个算式',
+    hintBtn:'提示', hintPreparing:'正在准备...', hintNoSolutions:'这些数字没有解法',
+    hintAllFound:'你已经找到全部解法！🎉',
+    hintNoMore:'本轮已没有更多提示',
+    hintRemaining:(n)=>`提示（剩余${n}次）`,
+    hintParens:(n)=>`🔎 提示${n}：我们已放好括号的位置 — 请完成剩余部分`,
+    hintOp:(n)=>`🔎 提示${n}：我们已在正确位置放好一个运算符号 — 请完成剩余部分`,
+    logHeading:'已记录的解法', logEmpty:'还没有记录任何解法 — 开始这一轮吧！',
+    footerNote:'所有计算都在你的浏览器本地完成 — 不会向任何服务器发送数据',
+    rulesToggle:'规则',
+    challengeRules:'点击数字和运算符号 <span class="ops">+ − × ÷ ^ ( )</span> 可直接插入算式，无需使用手机键盘',
+  },
+  it: {
+    dir:'ltr', lang:'it',
+    landingSub:'Un gioco di numeri veloce che mette alla prova le tue abilità matematiche — somma, sottrai, moltiplica, dividi e usa le potenze per arrivare esattamente a 100',
+    startBtn:'Inizia',
+    appTitle:'Arriva a',
+    tabFree:'Modalità libera', tabChallenge:'Esercizi giornalieri', tabStart:'Avvia la sfida',
+    scDiffHeading:'Scegli un livello di sfida',
+    scDiffEasyTitle:'Facile', scDiffEasySub:'Si risolve solo con + e −',
+    scDiffMediumTitle:'Medio', scDiffMediumSub:'Richiede × o ÷',
+    scDiffHardTitle:'Difficile', scDiffHardSub:'Richiede di unire cifre, potenze o un segno negativo',
+    scTimingHeading:'Durata della sfida',
+    scCountHeading:'Numero di proposte', scCountLabel:'proposte', scBackBtn:'Indietro',
+    scPlayersHeading:'Numero di giocatori', scPlayers1Title:'Un giocatore', scPlayers2Title:'Due giocatori',
+    scPlayerLabel:(p)=>`Giocatore ${p}`,
+    scPlayerWonRound:(p)=>`🏆 Il giocatore ${p} vince questa proposta!`,
+    scRaceWinner:(p,a,b)=>`🏆 Il giocatore ${p} vince la sfida! (Punteggio ${a} - ${b})`,
+    scRaceTie:(n,total)=>`🤝 Pareggio! Entrambi hanno risolto ${n} su ${total}`,
+    scRaceWinnerByTime:(p,n,total)=>`🏆 Il giocatore ${p} vince! Entrambi hanno risolto ${n} su ${total}, ma ha finito più velocemente`,
+    scNoSolutionFound:'Non risolto',
+    ratingPerfect:'🏆 Prestazione perfetta! Hai padroneggiato la sfida',
+    ratingExcellent:'🌟 Eccellente! Molto vicino alla perfezione',
+    ratingGood:'👍 Ottimo lavoro! Continua così',
+    ratingFair:'💪 Niente male! Ogni sfida affina le tue abilità',
+    ratingStart:'🌱 Buon inizio! Migliorerai a ogni round',
+    ratingTryAgain:'🔄 Non arrenderti! Anche i migliori sono partiti da zero — riprova',
+    acctSignInPrompt:'Accedi per salvare i tuoi progressi',
+    acctSignedInAs:(email)=>`Accesso effettuato: ${email}`,
+    acctTitle:'Accedi',
+    acctBadge:'ACCOUNT',
+    acctEmailPlaceholder:'Email',
+    acctPasswordPlaceholder:'Password',
+    acctLoginBtn:'Accedi',
+    acctSignupBtn:'Crea account',
+    acctLogoutBtn:'Esci',
+    acctBackBtn:'Indietro',
+    acctWelcome:(email)=>`Benvenuto, ${email}`,
+    acctChallengesPlayed:'Sfide giocate',
+    acctSuggestionsSolved:'Proposte risolte',
+    acctPerfectRuns:'Partite perfette',
+    acctLoadingStats:'Caricamento statistiche...',
+    acctFillBoth:'Inserisci nome utente e password',
+    acctConfirmPasswordPlaceholder:'Conferma password',
+    acctPasswordMismatch:'Le password non coincidono',
+    acctFillAll:'Inserisci nome utente, email e password',
+    acctUsernamePlaceholder:'Nome utente',
+    acctWeakPassword:'La password deve contenere almeno 6 caratteri, con lettere e numeri',
+    acctAuthError:(code)=>`Errore: ${code}`,
+    scPassPhone:(p)=>`Passa il telefono al giocatore ${p} e premi inizia quando è pronto`,
+    scTurnStartBtn:'Inizia',
+    scDurMinLabel:'minuti',
+    scStartBtn:'Avvia la sfida',
+    scGenerating:'Preparazione della sfida',
+    scSuggestionLabel:(i,total)=>`Proposta ${i} di ${total}`,
+    scSuccessTitle:'Sfida completata! 🎉',
+    scSuccessSub:(diff,n)=>`Hai risolto tutte le ${n} proposte del livello "${diff}"`,
+    scFailTitle:'⏰ Tempo scaduto!',
+    scFailSub:(n,total)=>`Non hai finito in tempo — hai risolto ${n} proposte su ${total}`,
+    scRetryBtn:'Riprova',
+    scChangeSettingsBtn:'Cambia impostazioni',
+    scEnableSound:'Attiva il suono del conto alla rovescia', scSoundOk:'Il suono funziona ✓', scSoundFailed:'Impossibile riprodurre il suono in questo browser',
+    scStopBtn:'Ferma la sfida e cambia impostazioni',
+    scFoundMsg:"✅ Corretto! Salvato — scrivine un'altra se vuoi, oppure passa a un'altra proposta",
+    scNextBtn:'Avanti',
+    scPrevBtn:'Indietro',
+    freeSubtitle:"Scegli tu stesso sei cifre, nell'ordine che preferisci, e lascia che il motore trovi tutti i modi per arrivare a 100",
+    challengeSubtitleIdle:'Riceverai sei cifre casuali — cerca di trovare quante più soluzioni possibili per arrivare a 100, con i tuoi tempi',
+    challengeSubtitleActive:'Tocca le cifre e le operazioni per scrivere la tua equazione — senza limiti di tempo',
+    sixDigits:'Le sei cifre',
+    pickDigits:'Scegli le cifre nell\u2019ordine che vuoi (da 0 a 9)',
+    backBtn:'Annulla', clearBtn:'Cancella tutto', randomBtn:'Riempimento casuale',
+    freeRules:'Operazioni consentite: + − × ÷ ^ · Parentesi consentite · Due o più cifre possono essere unite in un solo numero · ',
+    freeRulesBold:"L'ordine scelto non cambia mai",
+    waitingForDigits:'Scegli 6 cifre dal tastierino sopra per iniziare la ricerca',
+    searching:'Ricerca di tutte le soluzioni possibili',
+    noSolutions:'Nessuna soluzione per queste cifre',
+    noSolutionsSub:'Non è possibile arrivare a 100 con queste sei cifre con nessuna combinazione di operazioni — prova altre cifre',
+    modeCount:'Numero di soluzioni', modeOne:'Mostra una soluzione', modeAll:'Mostra tutte le soluzioni',
+    solutionsCountLabel:'soluzioni possibili per arrivare a 100',
+    shuffleBtn:"Un'altra",
+    retrySame:'Riprova con le stesse cifre',
+    newDigits:'Nuove cifre',
+    solCountLabel:'Soluzioni possibili per queste cifre:',
+    answerPlaceholder:'es. 1+2+3+4+5+6',
+    checkBtn:'Verifica',
+    correctMsg:"✅ Corretto! Esattamente 100 — prova a trovare un'altra soluzione con le stesse cifre, oppure chiedine di nuove",
+    dupMsg:"⚠️ Hai già inviato esattamente questa soluzione — scrivine una diversa",
+    errPrefix:'❌ ',
+    errWrongResult:(v)=>`❌ Risultato = ${v}, non 100`,
+    errBadChars:'Contiene caratteri non consentiti (solo cifre e + − × ÷ ^ ())',
+    errDigitsMismatch:'Devi usare tutte e sei le cifre, esattamente nello stesso ordine',
+    errLeadingZero:'Un numero di più cifre non può iniziare con 0 (come 05)',
+    errIncomplete:'Espressione incompleta', errUnclosedParen:'Parentesi non chiusa', errInvalid:'Espressione non valida',
+    errUndefined:'Operazione non definita (come una divisione per zero)',
+    errEmpty:"Scrivi prima un'equazione",
+    hintBtn:'Suggerimento', hintPreparing:'Preparazione...', hintNoSolutions:'Nessuna soluzione per queste cifre',
+    hintAllFound:'Le hai trovate tutte! 🎉',
+    hintNoMore:'Nessun altro suggerimento per questo turno',
+    hintRemaining:(n)=>`Suggerimento (${n} rimasti)`,
+    hintParens:(n)=>`🔎 Suggerimento ${n}: abbiamo posizionato le parentesi — completa il resto`,
+    hintOp:(n)=>`🔎 Suggerimento ${n}: abbiamo posizionato un operatore al posto giusto — completa il resto`,
+    logHeading:'Soluzioni registrate', logEmpty:'Nessuna soluzione registrata ancora — inizia il turno!',
+    footerNote:'Tutto viene calcolato localmente nel tuo browser — nessun dato viene inviato a un server',
+    rulesToggle:'Regole',
+    challengeRules:'Tocca le cifre e le operazioni <span class="ops">+ − × ÷ ^ ( )</span> per inserirle direttamente nella tua equazione, senza bisogno della tastiera del telefono',
+  },
+
+};
+let LANG = 'ar';
+const LANG_LIST = ['ar','en','fr','es','zh','it'];
+const LANG_NATIVE = {ar:'العربية', en:'English', fr:'Français', es:'Español', zh:'中文', it:'Italiano'};
+const LANG_CODE = {ar:'AR', en:'EN', fr:'FR', es:'ES', zh:'中文', it:'IT'};
+function tr(key, ...args){
+  const v = T[LANG][key];
+  return typeof v === 'function' ? v(...args) : v;
+}
+function buildLangButtons(){
+  const landWrap = document.getElementById('landLangToggle');
+  landWrap.innerHTML = '';
+  LANG_LIST.forEach(code=>{
+    const b1 = document.createElement('button');
+    b1.className = 'lang-btn';
+    b1.textContent = LANG_NATIVE[code];
+    b1.addEventListener('click', ()=> setLang(code));
+    landWrap.appendChild(b1);
+  });
+}
+document.getElementById('langSingleBtn').addEventListener('click', ()=>{
+  document.getElementById('appWrap').style.display = 'none';
+  document.getElementById('landingWrap').style.display = '';
+});
+
+/* ================= account / progress ================= */
+let currentUser = null;
+let currentStats = null;
+let accountReturnTo = 'landing'; // 'landing' | 'app'
+
+function showAccountScreen(returnTo){
+  accountReturnTo = returnTo;
+  document.getElementById('landingWrap').style.display = 'none';
+  document.getElementById('appWrap').style.display = 'none';
+  document.getElementById('accountWrap').style.display = '';
+  document.getElementById('authError').textContent = '';
+  renderAccountScreen();
+}
+function hideAccountScreen(){
+  document.getElementById('accountWrap').style.display = 'none';
+  if(accountReturnTo === 'app'){
+    document.getElementById('appWrap').style.display = '';
+  } else {
+    document.getElementById('landingWrap').style.display = '';
+  }
+}
+function getDisplayName(){
+  if(currentStats && currentStats.username) return currentStats.username;
+  if(currentUser && currentUser.email) return currentUser.email.split('@')[0];
+  return '';
+}
+function renderAccountScreen(){
+  const authFormWrap = document.getElementById('authFormWrap');
+  const profileWrap = document.getElementById('profileWrap');
+  if(currentUser){
+    authFormWrap.style.display = 'none';
+    profileWrap.style.display = '';
+    document.getElementById('profileWelcome').textContent = tr('acctWelcome', getDisplayName());
+    const statsEl = document.getElementById('profileStats');
+    if(currentStats){
+      const solved = currentStats.suggestionsSolved || 0;
+      const total = currentStats.suggestionsTotal || 0;
+      const pct = total > 0 ? Math.round(solved/total*100) : 0;
+      statsEl.innerHTML = `
+        <div class="rb-item"><div class="rb-head">${tr('acctChallengesPlayed')}</div><div class="rb-sol">${currentStats.challengesPlayed || 0}</div></div>
+        <div class="rb-item"><div class="rb-head">${tr('acctSuggestionsSolved')}</div><div class="rb-sol">${solved} / ${total} (${pct}%)</div></div>
+        <div class="rb-item"><div class="rb-head">${tr('acctPerfectRuns')}</div><div class="rb-sol">${currentStats.perfectRuns || 0}</div></div>
+      `;
+    } else {
+      statsEl.innerHTML = `<div class="rb-item"><div class="rb-head">${tr('acctLoadingStats')}</div></div>`;
+    }
+  } else {
+    authFormWrap.style.display = '';
+    profileWrap.style.display = 'none';
+  }
+}
+function updateAccountButtons(){
+  const label = document.getElementById('landingAccountLabel');
+  const banner = document.getElementById('userBanner');
+  if(currentUser){
+    label.textContent = tr('acctSignedInAs', getDisplayName());
+    banner.style.display = '';
+    document.getElementById('userBannerName').textContent = getDisplayName();
+  } else {
+    label.textContent = tr('acctSignInPrompt');
+    banner.style.display = 'none';
+  }
+}
+window.onFbAuthChanged = function(user){
+  currentUser = user;
+  currentStats = null;
+  updateAccountButtons();
+  if(user){
+    window.FB.loadStats(user.uid).then(stats=>{
+      currentStats = stats;
+      updateAccountButtons();
+      if(document.getElementById('accountWrap').style.display !== 'none') renderAccountScreen();
+    }).catch(()=>{});
+  }
+  if(document.getElementById('accountWrap').style.display !== 'none') renderAccountScreen();
+};
+
+document.getElementById('landingAccountBtn').addEventListener('click', ()=> showAccountScreen('landing'));
+document.getElementById('headerAccountBtn').addEventListener('click', ()=> showAccountScreen('app'));
+document.getElementById('accountBackBtn').addEventListener('click', hideAccountScreen);
+
+document.getElementById('authLoginBtn').addEventListener('click', async ()=>{
+  const username = document.getElementById('authUsername').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const errEl = document.getElementById('authError');
+  errEl.textContent = '';
+  if(!username || !password){ errEl.textContent = tr('acctFillBoth'); return; }
+  if(!window.FB){ errEl.textContent = tr('acctAuthError', 'FB-not-loaded (' + (window.fbLoadError || 'unknown') + ')'); return; }
+  try{
+    await window.FB.logIn(username, password);
+  }catch(e){
+    const detail = (e && e.code ? e.code : '') + (e && e.message ? ' — ' + e.message : (e ? ' — ' + String(e) : ' — unknown'));
+    errEl.textContent = tr('acctAuthError', detail);
+  }
+});
+document.getElementById('authSignupBtn').addEventListener('click', async ()=>{
+  const username = document.getElementById('authUsername').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const passwordConfirm = document.getElementById('authPasswordConfirm').value;
+  const errEl = document.getElementById('authError');
+  errEl.textContent = '';
+  if(!username || !password){ errEl.textContent = tr('acctFillBoth'); return; }
+  if(password.length < 6 || !/[a-zA-Z]/.test(password) || !/[0-9]/.test(password)){
+    errEl.textContent = tr('acctWeakPassword');
+    return;
+  }
+  if(password !== passwordConfirm){ errEl.textContent = tr('acctPasswordMismatch'); return; }
+  if(!window.FB){ errEl.textContent = tr('acctAuthError', 'FB-not-loaded (' + (window.fbLoadError || 'unknown') + ')'); return; }
+  try{
+    await window.FB.signUp(username, password);
+  }catch(e){
+    const detail = (e && e.code ? e.code : '') + (e && e.message ? ' — ' + e.message : (e ? ' — ' + String(e) : ' — unknown'));
+    errEl.textContent = tr('acctAuthError', detail);
+  }
+});
+document.getElementById('authLogoutBtn').addEventListener('click', async ()=>{
+  try{ await window.FB.logOut(); }catch(e){}
+  renderAccountScreen();
+});
+function setupPwToggle(btnId, inputId){
+  const btn = document.getElementById(btnId);
+  const input = document.getElementById(inputId);
+  btn.addEventListener('click', ()=>{
+    const showing = input.type === 'text';
+    input.type = showing ? 'password' : 'text';
+    btn.textContent = showing ? '👁️' : '🙈';
+  });
+}
+setupPwToggle('togglePw1', 'authPassword');
+setupPwToggle('togglePw2', 'authPasswordConfirm');
+function recordRoundToAccount(solvedCount, total){
+  if(!currentUser || !window.FB) return;
+  window.FB.recordRoundResult(currentUser.uid, solvedCount, total, solvedCount === total).then(()=>{
+    return window.FB.loadStats(currentUser.uid);
+  }).then(stats=>{
+    currentStats = stats;
+  }).catch(()=>{});
+}
+
+function applyStaticText(){
+  document.getElementById('htmlRoot').setAttribute('dir', T[LANG].dir);
+  document.getElementById('htmlRoot').setAttribute('lang', LANG);
+  document.getElementById('landingSub').textContent = tr('landingSub');
+  document.getElementById('startBtn').textContent = tr('startBtn');
+  document.querySelectorAll('#landLangToggle .lang-btn').forEach((b,i)=> b.classList.toggle('active', LANG_LIST[i]===LANG));
+  document.getElementById('langSingleBtnCode').textContent = LANG_CODE[LANG];
+
+  document.getElementById('appTitle').textContent = tr('appTitle');
+  document.getElementById('tabFreeLabel').textContent = tr('tabFree');
+  document.getElementById('tabChallengeLabel').textContent = tr('tabChallenge');
+  document.getElementById('sixDigitsLabel').textContent = tr('sixDigits');
+  document.getElementById('sixDigitsLabel2').textContent = tr('sixDigits');
+  document.getElementById('pickDigitsLabel').textContent = tr('pickDigits');
+  document.getElementById('backBtnLabel').textContent = tr('backBtn');
+  document.getElementById('clearBtnLabel').textContent = tr('clearBtn');
+  document.getElementById('randomBtnLabel').textContent = tr('randomBtn');
+  document.getElementById('freeRules').innerHTML = tr('freeRules') + '<span class="ops">+ − × ÷ ^</span> · ' + '<b>' + tr('freeRulesBold') + '</b>';
+  // fix: rebuild freeRules properly below
+  document.getElementById('freeRules').innerHTML =
+    (LANG==='ar'
+      ? 'العمليات المسموحة: <span class="ops">+ − × ÷ ^</span> · الأقواس مسموحة · يمكن دمج رقمين أو أكثر لتكوين عدد واحد · <b>' + tr('freeRulesBold') + '</b>'
+      : 'Allowed operations: <span class="ops">+ − × ÷ ^</span> · Parentheses allowed · Two or more digits may combine into one number · <b>' + tr('freeRulesBold') + '</b>');
+
+  document.getElementById('retrySameLabel').textContent = tr('retrySame');
+  document.getElementById('newDigitsLabel').textContent = tr('newDigits');
+  document.getElementById('solCountLabel').textContent = tr('solCountLabel');
+  document.getElementById('challengeRules').innerHTML = tr('challengeRules');
+  document.getElementById('logHeading').textContent = tr('logHeading');
+  document.getElementById('logEmptyMsg').textContent = tr('logEmpty');
+  document.getElementById('footerNote').textContent = tr('footerNote');
+  document.getElementById('rulesToggleLabel1').textContent = tr('rulesToggle');
+  document.getElementById('rulesToggleLabel2').textContent = tr('rulesToggle');
+  document.getElementById('accountTitle').textContent = tr('acctTitle');
+  document.getElementById('accountBadge').textContent = tr('acctBadge');
+  document.getElementById('authUsername').placeholder = tr('acctUsernamePlaceholder');
+  document.getElementById('authPassword').placeholder = tr('acctPasswordPlaceholder');
+  document.getElementById('authPasswordConfirm').placeholder = tr('acctConfirmPasswordPlaceholder');
+  document.getElementById('authLoginBtn').textContent = tr('acctLoginBtn');
+  document.getElementById('authSignupBtn').textContent = tr('acctSignupBtn');
+  document.getElementById('authLogoutBtn').textContent = tr('acctLogoutBtn');
+  document.getElementById('accountBackBtn').textContent = tr('acctBackBtn');
+  updateAccountButtons();
+
+  document.getElementById('tabStartLabel').textContent = tr('tabStart');
+  document.getElementById('scDiffHeading').textContent = tr('scDiffHeading');
+  document.getElementById('scDiffEasyTitle').textContent = tr('scDiffEasyTitle');
+  document.getElementById('scDiffMediumTitle').textContent = tr('scDiffMediumTitle');
+  document.getElementById('scDiffHardTitle').textContent = tr('scDiffHardTitle');
+  document.getElementById('scTimingHeading').textContent = tr('scTimingHeading');
+  document.getElementById('scCountHeading').textContent = tr('scCountHeading');
+  document.getElementById('scPlayersHeading').textContent = tr('scPlayersHeading');
+  document.getElementById('scPlayers1Title').textContent = tr('scPlayers1Title');
+  document.getElementById('scPlayers2Title').textContent = tr('scPlayers2Title');
+  document.getElementById('scCountLabel1').textContent = tr('scCountLabel');
+  document.getElementById('scCountLabel2').textContent = tr('scCountLabel');
+  document.getElementById('scCountLabel3').textContent = tr('scCountLabel');
+  document.getElementById('scDurMinLabel1').textContent = tr('scDurMinLabel');
+  document.getElementById('scDurMinLabel2').textContent = tr('scDurMinLabel');
+  document.getElementById('scDurMinLabel3').textContent = tr('scDurMinLabel');
+  document.getElementById('scStartBtnLabel').textContent = tr('scStartBtn');
+  document.getElementById('scGeneratingMsg').innerHTML = `${tr('scGenerating')} <span class="dot"></span><span class="dot"></span><span class="dot"></span>`;
+  document.getElementById('sixDigitsLabel3').textContent = tr('sixDigits');
+  document.getElementById('scEnableSoundLabel').textContent = tr('scEnableSound');
+  document.getElementById('scStopBtnLabel').textContent = tr('scStopBtn');
+
+  const headerSubtitle = document.getElementById('headerSubtitle');
+  if(tabFree.classList.contains('active')){
+    headerSubtitle.textContent = tr('freeSubtitle');
+  } else {
+    headerSubtitle.textContent = (typeof challengeStarted!=='undefined' && challengeStarted) ? tr('challengeSubtitleActive') : tr('challengeSubtitleIdle');
+  }
+
+  if(typeof resultsEl !== 'undefined' && resultsEl && currentDigits.length < 6 && resultsEl.querySelector('.loading') && !resultsEl.querySelector('.mode-selector')){
+    resultsEl.innerHTML = `<div class="loading">${tr('waitingForDigits')}</div>`;
+  }
+}
+
+function setLang(l){
+  LANG = l;
+  applyStaticText();
+  // re-render any dynamic content already on screen so it switches language too
+  if(typeof currentSolutions !== 'undefined' && currentSolutions && currentSolutions.length && resultsEl.querySelector('.mode-selector')){
+    renderResults(currentSolutions);
+  }
+}
+
+document.getElementById('startBtn').addEventListener('click', ()=>{
+  document.getElementById('landingWrap').style.display = 'none';
+  document.getElementById('appWrap').style.display = '';
+  applyStaticText();
+});
+
+/* ================= shared solver engine (free mode) ================= */
+const tilesEl = document.getElementById('tiles');
+const resultsEl = document.getElementById('results');
+const keypadEl = document.getElementById('keypad');
+const btnBack = document.getElementById('btnBack');
+const btnClear = document.getElementById('btnClear');
+const btnRandom = document.getElementById('btnRandom');
+
+let currentDigits = [];
+
+function buildKeypad(){
+  keypadEl.innerHTML = '';
+  for(let d=0; d<=9; d++){
+    const b = document.createElement('button');
+    b.className = 'key';
+    b.textContent = d;
+    b.addEventListener('click', ()=>{ playClickSound(); addDigit(String(d)); });
+    keypadEl.appendChild(b);
+  }
+}
+function updateKeypadState(){
+  const full = currentDigits.length >= 6;
+  keypadEl.querySelectorAll('.key').forEach(b=> b.disabled = full);
+  btnBack.disabled = currentDigits.length === 0;
+}
+function renderTiles(animate){
+  tilesEl.innerHTML = '';
+  for(let i=0;i<6;i++){
+    const t = document.createElement('div');
+    const has = i < currentDigits.length;
+    t.className = 'tile' + (has && animate && i===currentDigits.length-1 ? ' spin' : '') + (has ? '' : ' empty-slot');
+    t.textContent = has ? currentDigits[i] : '—';
+    tilesEl.appendChild(t);
+  }
+  updateKeypadState();
+}
+function addDigit(d){
+  if(currentDigits.length >= 6) return;
+  currentDigits.push(d);
+  renderTiles(true);
+  if(currentDigits.length === 6){ runSolve(); }
+  else { resultsEl.innerHTML = ''; }
+}
+function removeLast(){
+  if(!currentDigits.length) return;
+  currentDigits.pop();
+  renderTiles(false);
+  resultsEl.innerHTML = '';
+}
+function clearAll(){
+  currentDigits = [];
+  renderTiles(false);
+  resultsEl.innerHTML = '';
+}
+function randomDigits(){
+  const arr = [];
+  for(let i=0;i<6;i++) arr.push(String(Math.floor(Math.random()*10)));
+  return arr;
+}
+function displayExpr(expr){
+  return expr.replace(/\*/g,'×').replace(/\//g,'÷').replace(/-/g,'−');
+}
+
+// operator precedence: + and - lowest, * and / higher, ^ highest
+function prec(op){ return (op==='+'||op==='-') ? 1 : (op==='*'||op==='/') ? 2 : 3; }
+
+function renderChild(entry, parentOp, side){
+  if(entry.atomic){
+    if(parentOp==='^' && side==='left' && entry.expr[0]==='-') return '('+entry.expr+')';
+    return entry.expr;
+  }
+  if(parentOp === '^') return '('+entry.expr+')';
+  const cp = prec(entry.op), pp = prec(parentOp);
+  if(side==='left'){
+    return (cp < pp) ? '('+entry.expr+')' : entry.expr;
+  }
+  if(cp < pp) return '('+entry.expr+')';
+  if(cp > pp) return entry.expr;
+  if(parentOp==='+' || parentOp==='*') return entry.expr;
+  return '('+entry.expr+')';
+}
+
+function buildAllExpressions(segments, nums){
+  const k = segments.length;
+  const dp = [];
+  for(let i=0;i<k;i++) dp.push(new Array(k));
+  for(let i=0;i<k;i++){
+    dp[i][i] = [{value: nums[i], expr: (nums[i] < 0 ? '-'+segments[i] : segments[i]), atomic:true, op:null}];
+  }
+  for(let len=2; len<=k; len++){
+    for(let i=0;i+len-1<k;i++){
+      const j = i+len-1;
+      let list = [];
+      for(let m=i;m<j;m++){
+        const left = dp[i][m];
+        const right = dp[m+1][j];
+        for(const l of left){
+          for(const r of right){
+            const ops = ['+','-','*','/','^'];
+            for(const op of ops){
+              let v;
+              if(op==='+') v = l.value + r.value;
+              else if(op==='-') v = l.value - r.value;
+              else if(op==='*') v = l.value * r.value;
+              else if(op==='/'){ if(r.value===0) continue; v = l.value / r.value; }
+              else {
+                if(l.value===0 && r.value===0) continue;
+                if(Math.abs(r.value) > 12) continue;
+                v = Math.pow(l.value, r.value);
+                if(Math.abs(v) >= 1e12) continue;
+              }
+              if(!Number.isFinite(v)) continue;
+              const lStr = renderChild(l, op, 'left');
+              const rStr = renderChild(r, op, 'right');
+              list.push({value:v, expr: lStr+op+rStr, atomic:false, op});
+            }
+          }
+        }
+      }
+      dp[i][j] = list;
+    }
+  }
+  return dp[0][k-1];
+}
+
+// plain-precedence evaluator (no digit-order constraints) used only to
+// verify whether a parenthesis pair can be safely dropped without changing
+// the expression's value
+function evalExprPlain(expr){
+  let i = 0;
+  const tokens = [];
+  while(i < expr.length){
+    const c = expr[i];
+    if(/[0-9]/.test(c)){
+      let j = i;
+      while(j < expr.length && /[0-9]/.test(expr[j])) j++;
+      tokens.push({type:'num', value: parseInt(expr.slice(i,j),10)});
+      i = j;
+    } else { tokens.push({type:'op', value:c}); i++; }
+  }
+  let pos = 0;
+  function peek(){ return tokens[pos]; }
+  function parseAtom(){
+    const t = peek();
+    if(!t) throw new Error('bad');
+    if(t.type==='op' && t.value==='('){
+      pos++; const v = parseExpr();
+      if(!peek() || peek().value !== ')') throw new Error('bad');
+      pos++; return v;
+    }
+    if(t.type==='num'){ pos++; return t.value; }
+    throw new Error('bad');
+  }
+  function parsePower(){ let v=parseAtom(); while(peek() && peek().value==='^'){ pos++; v=Math.pow(v,parseUnary()); } return v; }
+  function parseUnary(){ if(peek() && peek().type==='op' && peek().value==='-'){ pos++; return -parseUnary(); } return parsePower(); }
+  function parseTerm(){ let v=parseUnary(); while(peek() && (peek().value==='*'||peek().value==='/')){ const op=tokens[pos].value; pos++; const r=parseUnary(); v = op==='*'?v*r:v/r; } return v; }
+  function parseExpr(){ let v=parseTerm(); while(peek() && (peek().value==='+'||peek().value==='-')){ const op=tokens[pos].value; pos++; const r=parseTerm(); v = op==='+'?v+r:v-r; } return v; }
+  const v = parseExpr();
+  if(pos !== tokens.length) throw new Error('bad');
+  return v;
+}
+// removes any parenthesis pair whose removal does not change the
+// expression's value — catches cases (like a sub-expression that happens
+// to equal 1) that the general precedence rules can't detect in advance
+function simplifyParens(expr){
+  let changed = true;
+  while(changed){
+    changed = false;
+    let target;
+    try{ target = evalExprPlain(expr); }catch(e){ return expr; }
+    for(let i=0;i<expr.length;i++){
+      if(expr[i] !== '(') continue;
+      let depth=0, j=i;
+      for(; j<expr.length; j++){
+        if(expr[j]==='(') depth++;
+        else if(expr[j]===')'){ depth--; if(depth===0) break; }
+      }
+      if(j>=expr.length) continue;
+      const candidate = expr.slice(0,i) + expr.slice(i+1,j) + expr.slice(j+1);
+      try{
+        const v2 = evalExprPlain(candidate);
+        if(Math.abs(v2-target) < 1e-9){
+          expr = candidate;
+          changed = true;
+          break;
+        }
+      }catch(e){ /* not safe to remove, keep as is */ }
+    }
+  }
+  return expr;
+}
+
+function solve(digits){
+  const n = digits.length;
+  const EPS = 1e-6;
+  let allSolutions = new Set();
+  for(let mask=0; mask < (1<<(n-1)); mask++){
+    let segments = [];
+    let cur = digits[0];
+    for(let i=0;i<n-1;i++){
+      if(mask & (1<<i)){ segments.push(cur); cur = digits[i+1]; }
+      else { cur += digits[i+1]; }
+    }
+    segments.push(cur);
+    let valid = true;
+    for(const s of segments){ if(s.length>1 && s[0]==='0'){ valid=false; break; } }
+    if(!valid) continue;
+    const nums = segments.map(s=>parseInt(s,10));
+
+    for(const entry of buildAllExpressions(segments, nums)){
+      if(Math.abs(entry.value - 100) < EPS) allSolutions.add(simplifyParens(entry.expr));
+    }
+    if(nums[0] !== 0){
+      const negNums = nums.slice();
+      negNums[0] = -negNums[0];
+      for(const entry of buildAllExpressions(segments, negNums)){
+        if(Math.abs(entry.value - 100) < EPS) allSolutions.add(simplifyParens(entry.expr));
+      }
+    }
+  }
+  return Array.from(allSolutions);
+}
+
+// finds the operator category with the lowest precedence at bracket-depth 0
+// within a self-contained subexpression string (used to check whether a
+// parenthesized operand's own top-level operator is '^')
+function topLevelOp(expr){
+  let depth = 0, hasAdd = false, hasMul = false, hasPow = false;
+  for(let i=0;i<expr.length;i++){
+    const c = expr[i];
+    if(c==='(') depth++;
+    else if(c===')') depth--;
+    else if(depth===0){
+      if((c==='+' || c==='-') && i>0) hasAdd = true;
+      else if(c==='*' || c==='/') hasMul = true;
+      else if(c==='^') hasPow = true;
+    }
+  }
+  if(hasAdd) return '+-';
+  if(hasMul) return '*/';
+  if(hasPow) return '^';
+  return 'atom';
+}
+// (a^b)^c or a^(b^c) mathematically collapses into a single power operation
+// (multiply the exponents, then compute) — so a '^' directly chained to
+// another '^' is scored as one conceptual step, not two independent ones
+function complexityScore(expr){
+  let score = 0;
+  for(let i=0;i<expr.length;i++){
+    const c = expr[i];
+    if(c==='+' || c==='-') score += 1;
+    else if(c==='*' || c==='/') score += 2;
+    else if(c==='(') score += 1;
+    else if(c==='^'){
+      let chained = false;
+      if(expr[i-1] === ')'){
+        let d=0, j=i-1;
+        for(; j>=0; j--){
+          if(expr[j]===')') d++;
+          else if(expr[j]==='('){ d--; if(d===0) break; }
+        }
+        if(j>=0 && topLevelOp(expr.slice(j+1, i-1)) === '^') chained = true;
+      }
+      if(!chained && expr[i+1] === '('){
+        let d=0, j=i+1;
+        for(; j<expr.length; j++){
+          if(expr[j]==='(') d++;
+          else if(expr[j]===')'){ d--; if(d===0) break; }
+        }
+        if(j<expr.length && topLevelOp(expr.slice(i+2, j)) === '^') chained = true;
+      }
+      score += chained ? 1 : 4;
+    }
+  }
+  return score + expr.length * 0.01;
+}
+
+let currentSolutions = [];
+let currentMode = 'count';
+
+function renderLoading(){
+  resultsEl.innerHTML = `<div class="loading">${tr('searching')} <span class="dot"></span><span class="dot"></span><span class="dot"></span></div>`;
+}
+function ticketHtml(expr, index){
+  return `<div class="ticket"><span class="index">${index}</span><span class="expr">${displayExpr(expr)} <span class="eq">=</span> <span class="res">100</span></span></div>`;
+}
+function renderOneSolution(index){
+  const content = document.getElementById('modeContent');
+  content.innerHTML = `
+    <div class="one-wrap">
+      <div class="ticket-list">${ticketHtml(currentSolutions[index], 1)}</div>
+      <div class="one-actions"><button class="btn-ghost" id="btnShuffle">🔀 ${tr('shuffleBtn')}</button></div>
+    </div>`;
+  document.getElementById('btnShuffle').addEventListener('click', ()=>{
+    const i = Math.floor(Math.random()*currentSolutions.length);
+    renderOneSolution(i);
+  });
+}
+function renderModeContent(){
+  const content = document.getElementById('modeContent');
+  if(!content) return;
+  if(currentMode === 'count'){
+    content.innerHTML = `<div class="count-display"><div class="big">${currentSolutions.length}</div><div class="label">${tr('solutionsCountLabel')}</div></div>`;
+  } else if(currentMode === 'one'){
+    renderOneSolution(0);
+  } else if(currentMode === 'all'){
+    const items = currentSolutions.map((e,i)=>ticketHtml(e, i+1)).join('');
+    content.innerHTML = `<div class="ticket-list">${items}</div>`;
+  }
+}
+function setMode(mode){
+  currentMode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b=> b.classList.toggle('active', b.dataset.mode===mode));
+  renderModeContent();
+}
+function renderResults(solutions){
+  solutions = solutions.slice().sort((a,b)=> complexityScore(a) - complexityScore(b));
+  currentSolutions = solutions;
+  if(solutions.length === 0){
+    resultsEl.innerHTML = `<div class="empty">${tr('noSolutions')}<span>${tr('noSolutionsSub')}</span></div>`;
+    return;
+  }
+  resultsEl.innerHTML = `
+    <div class="mode-selector">
+      <button class="mode-btn" data-mode="count"><span class="icon">🔢</span>${tr('modeCount')}</button>
+      <button class="mode-btn" data-mode="one"><span class="icon">👁️</span>${tr('modeOne')}</button>
+      <button class="mode-btn" data-mode="all"><span class="icon">📋</span>${tr('modeAll')}</button>
+    </div>
+    <div id="modeContent"></div>
+  `;
+  document.querySelectorAll('.mode-btn').forEach(b=>{
+    b.addEventListener('click', ()=> setMode(b.dataset.mode));
+  });
+  setMode('count');
+}
+function runSolve(){
+  renderLoading();
+  setTimeout(()=>{
+    const solutions = solve(currentDigits);
+    renderResults(solutions);
+  }, 30);
+}
+
+btnBack.addEventListener('click', removeLast);
+btnClear.addEventListener('click', clearAll);
+btnRandom.addEventListener('click', ()=>{
+  currentDigits = randomDigits();
+  renderTiles(true);
+  runSolve();
+});
+
+/* ================= tabs ================= */
+const tabFree = document.getElementById('tabFree');
+const tabChallenge = document.getElementById('tabChallenge');
+const tabStart = document.getElementById('tabStart');
+const viewFree = document.getElementById('viewFree');
+const viewChallenge = document.getElementById('viewChallenge');
+const viewStart = document.getElementById('viewStart');
+const headerSubtitle = document.getElementById('headerSubtitle');
+
+function activateTab(tab){
+  [tabFree, tabChallenge, tabStart].forEach(t=> t.classList.toggle('active', t===tab));
+  [viewFree, viewChallenge, viewStart].forEach(v=> v.classList.toggle('active', v === (tab===tabFree?viewFree:tab===tabChallenge?viewChallenge:viewStart)));
+}
+
+let scLocked = false;
+function setScTabsLocked(locked){
+  scLocked = locked;
+  tabFree.classList.toggle('locked', locked);
+  tabChallenge.classList.toggle('locked', locked);
+}
+
+tabFree.addEventListener('click', ()=>{
+  if(scLocked) return;
+  activateTab(tabFree);
+  pauseTick();
+  headerSubtitle.textContent = tr('freeSubtitle');
+});
+tabChallenge.addEventListener('click', ()=>{
+  if(scLocked) return;
+  activateTab(tabChallenge);
+  pauseTick();
+  if(!challengeStarted){
+    startChallengeRound();
+  } else {
+    headerSubtitle.textContent = tr('challengeSubtitleActive');
+  }
+});
+tabStart.addEventListener('click', ()=>{
+  activateTab(tabStart);
+  if(typeof scTimerInterval !== 'undefined' && scTimerInterval) playTick();
+  headerSubtitle.textContent = tr('scDiffHeading');
+});
+
+/* ================= challenge mode ================= */
+const chTilesEl = document.getElementById('chTiles');
+const chActiveEl = document.getElementById('chActive');
+const challengeBody = document.getElementById('challengeBody');
+const btnChallengeRestart = document.getElementById('btnChallengeRestart');
+const btnSameDigits = document.getElementById('btnSameDigits');
+const logList = document.getElementById('logList');
+const logCount = document.getElementById('logCount');
+
+let challengeStarted = false;
+let challengeDigits = [];
+let solvedLog = [];
+let roundActive = true;
+
+/* ---- light sound cues (Web Audio, no asset files needed) ---- */
+let audioCtx = null;
+function getAudioCtx(){
+  if(!audioCtx){
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if(AC) audioCtx = new AC();
+  }
+  return audioCtx;
+}
+function playTone(freq, startTime, duration, gainPeak, type){
+  const ctx = getAudioCtx();
+  if(!ctx) return;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = type || 'sine';
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0, startTime);
+  gain.gain.linearRampToValueAtTime(gainPeak, startTime + 0.015);
+  gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start(startTime);
+  osc.stop(startTime + duration + 0.02);
+}
+function playChord(freqs, startTime, duration, gainPeak, type){
+  freqs.forEach(f => playTone(f, startTime, duration, gainPeak, type));
+}
+function playRatingSound(key){
+  const ctx = getAudioCtx();
+  if(!ctx) return;
+  const t = ctx.currentTime;
+  if(key === 'ratingPerfect'){
+    // triumphant fanfare run into a sustained shimmering chord, ~3.2s
+    playTone(523.25, t,        0.18, 0.22);
+    playTone(659.25, t + 0.12, 0.18, 0.23);
+    playTone(784.0,  t + 0.24, 0.18, 0.24);
+    playTone(1046.5, t + 0.36, 0.22, 0.25);
+    playTone(1318.5, t + 0.50, 0.22, 0.24);
+    playTone(1568.0, t + 0.64, 0.3,  0.22);
+    playChord([1046.5, 1318.5, 1568.0], t + 0.85, 1.8, 0.15);
+    playTone(2093.0, t + 2.15, 1.05, 0.13);
+  } else if(key === 'ratingExcellent'){
+    // happy ascending arpeggio into a warm sustained harmony, ~3.1s
+    playTone(523.25, t,        0.16, 0.2);
+    playTone(659.25, t + 0.11, 0.16, 0.21);
+    playTone(784.0,  t + 0.22, 0.18, 0.22);
+    playTone(1046.5, t + 0.34, 0.22, 0.23);
+    playChord([784.0, 1046.5], t + 0.55, 1.6, 0.16);
+    playTone(1318.5, t + 2.05, 1.05, 0.14);
+  } else if(key === 'ratingGood'){
+    // pleasant rise into a sustained pad with a bright trailing note, ~3.0s
+    playTone(587.33, t,        0.18, 0.19);
+    playTone(880.0,  t + 0.15, 0.22, 0.2);
+    playChord([880.0, 1318.5], t + 0.38, 1.7, 0.15);
+    playTone(1760.0, t + 2.15, 0.85, 0.13);
+  } else if(key === 'ratingFair'){
+    // neutral-positive but warm and encouraging, ~3.0s
+    playTone(523.25, t,        0.2,  0.17);
+    playTone(698.46, t + 0.16, 0.22, 0.18);
+    playChord([698.46, 880.0], t + 0.4, 1.7, 0.14);
+    playTone(1046.5, t + 2.2,  0.8,  0.12);
+  } else if(key === 'ratingStart'){
+    // gentle but full-bodied warm phrase that still fills 3 seconds
+    playTone(440.0,   t,        0.3, 0.15);
+    playTone(554.37,  t + 0.26, 0.3, 0.15);
+    playChord([659.25, 880.0], t + 0.52, 1.9, 0.13);
+    playTone(1108.73, t + 2.5, 0.55, 0.1);
+  } else {
+    // ratingTryAgain — warm and resolving, never sounds like failure, ~3.0s
+    playTone(349.23, t,        0.3, 0.12, 'triangle');
+    playTone(440.0,  t + 0.28, 0.3, 0.13, 'triangle');
+    playChord([523.25, 659.25], t + 0.56, 2.0, 0.12, 'triangle');
+    playTone(880.0,  t + 2.6, 0.45, 0.1, 'triangle');
+  }
+}
+function playCorrectSound(){
+  const ctx = getAudioCtx();
+  if(!ctx) return;
+  const t = ctx.currentTime;
+  // bright ascending arpeggio — more celebratory than a plain two-note chime
+  playTone(523.25, t, 0.13, 0.16);
+  playTone(659.25, t + 0.07, 0.13, 0.17);
+  playTone(784.0,  t + 0.14, 0.15, 0.18);
+  playTone(1046.5, t + 0.21, 0.22, 0.2);
+}
+const ENCOURAGE_PHRASES = {
+  ar:['أحسنت! 👏','رائع! 🌟','ممتاز! 🔥','أحسنت صنعًا!','عمل رائع!'],
+  en:['Great job! 👏','Awesome! 🌟','Excellent! 🔥','Well done!','Nice work!'],
+  fr:['Bravo ! 👏','Génial ! 🌟','Excellent ! 🔥','Bien joué !','Beau travail !'],
+  es:['¡Muy bien! 👏','¡Genial! 🌟','¡Excelente! 🔥','¡Bien hecho!','¡Buen trabajo!'],
+  zh:['太棒了！👏','真厉害！🌟','非常好！🔥','做得好！','干得漂亮！'],
+  it:['Bravo! 👏','Fantastico! 🌟','Eccellente! 🔥','Ben fatto!','Ottimo lavoro!'],
+};
+const SPEECH_LANG = {ar:'ar-SA', en:'en-US', fr:'fr-FR', es:'es-ES', zh:'zh-CN', it:'it-IT'};
+function speakEncouragement(){
+  try{
+    if(!window.speechSynthesis) return;
+    const phrases = ENCOURAGE_PHRASES[LANG] || ENCOURAGE_PHRASES.en;
+    const text = phrases[Math.floor(Math.random()*phrases.length)];
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = SPEECH_LANG[LANG] || 'en-US';
+    utter.rate = 1.05;
+    utter.pitch = 1.15;
+    utter.volume = 0.85;
+    window.speechSynthesis.speak(utter);
+  }catch(e){}
+}
+function playEncouragement(){
+  playCorrectSound();
+  speakEncouragement();
+}
+function playUrgentBeep(){
+  const ctx = getAudioCtx();
+  if(!ctx) return;
+  const t = ctx.currentTime;
+  playTone(1046.5, t, 0.09, 0.22, 'triangle');
+  playTone(1318.5, t + 0.1, 0.1, 0.2, 'triangle');
+}
+function playWrongSound(){
+  const ctx = getAudioCtx();
+  if(!ctx) return;
+  const t = ctx.currentTime;
+  playTone(392, t, 0.16, 0.4, 'triangle');
+  playTone(311.1, t + 0.1, 0.22, 0.38, 'triangle');
+}
+function playClickSound(){
+  const ctx = getAudioCtx();
+  if(!ctx) return;
+  const t = ctx.currentTime;
+  function tick(freq, gainPeak, dur){
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, t);
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.linearRampToValueAtTime(gainPeak, t + 0.003);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(t);
+    osc.stop(t + dur + 0.01);
+  }
+  tick(2100, 0.05, 0.03);
+  tick(3150, 0.02, 0.02);
+}
+
+/* simple ticking-clock sound during a timed Start-the-Challenge round —
+   just a short, quiet click once per second, nothing layered with it */
+let tickInterval = null;
+function playSingleTick(){
+  const ctx = getAudioCtx();
+  if(!ctx) return;
+  const t = ctx.currentTime;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'sine';
+  osc.frequency.value = 750;
+  gain.gain.setValueAtTime(0.09, t);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.start(t); osc.stop(t + 0.06);
+}
+function playTick(){
+  if(tickInterval) return;
+  playSingleTick();
+  tickInterval = setInterval(playSingleTick, 1000);
+}
+function pauseTick(){
+  clearInterval(tickInterval);
+  tickInterval = null;
+}
+let audioUnlocked = false;
+function unlockAllAudio(){
+  if(audioUnlocked) return;
+  audioUnlocked = true;
+  try{
+    const ctx = getAudioCtx();
+    if(ctx && ctx.state === 'suspended') ctx.resume();
+  }catch(e){}
+}
+document.addEventListener('click', unlockAllAudio, {once:true, capture:true});
+document.addEventListener('touchstart', unlockAllAudio, {once:true, capture:true});
+
+function renderChallengeTiles(){
+  chTilesEl.innerHTML = '';
+  challengeDigits.forEach(d=>{
+    const t = document.createElement('div');
+    t.className = 'tile clickable';
+    t.textContent = d;
+    t.addEventListener('click', ()=>{
+      playClickSound();
+      const input = document.getElementById('answerInput');
+      if(input) insertAtCursor(input, d);
+    });
+    chTilesEl.appendChild(t);
+  });
+}
+function insertAtCursor(input, text){
+  const start = input.selectionStart ?? input.value.length;
+  const end = input.selectionEnd ?? input.value.length;
+  input.value = input.value.slice(0,start) + text + input.value.slice(end);
+  const newPos = start + text.length;
+  input.focus();
+  input.setSelectionRange(newPos, newPos);
+}
+
+function renderAnswerForm(){
+  challengeBody.innerHTML = `
+    <div class="op-keypad">
+      <button class="op-key" data-op="+">+</button>
+      <button class="op-key" data-op="-">−</button>
+      <button class="op-key" data-op="*">×</button>
+      <button class="op-key" data-op="/">÷</button>
+      <button class="op-key" data-op="^">^</button>
+      <button class="op-key erase" id="opErase">⌫</button>
+    </div>
+    <div class="op-keypad">
+      <button class="op-key" data-op="(">(</button>
+      <button class="op-key" data-op=")">)</button>
+    </div>
+    <div class="answer-row">
+      <input type="text" class="answer-input" id="answerInput" placeholder="${tr('answerPlaceholder')}" autocomplete="off" inputmode="none">
+      <button class="btn-primary" id="btnCheck">${tr('checkBtn')}</button>
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <div class="hints-wrap">
+      <button class="btn-ghost" id="btnHint">💡 ${tr('hintBtn')}</button>
+      <div class="hints-list" id="hintsList"></div>
+    </div>
+  `;
+  const input = document.getElementById('answerInput');
+  const btnCheck = document.getElementById('btnCheck');
+  const feedback = document.getElementById('feedback');
+
+  challengeBody.querySelectorAll('.op-key[data-op]').forEach(b=>{
+    b.addEventListener('click', ()=>{ playClickSound(); insertAtCursor(input, b.dataset.op); });
+  });
+  document.getElementById('opErase').addEventListener('click', ()=>{
+    playClickSound();
+    const start = input.selectionStart ?? input.value.length;
+    const end = input.selectionEnd ?? input.value.length;
+    if(start === end && start > 0){
+      input.value = input.value.slice(0,start-1) + input.value.slice(end);
+      input.focus(); input.setSelectionRange(start-1, start-1);
+    } else {
+      input.value = input.value.slice(0,start) + input.value.slice(end);
+      input.focus(); input.setSelectionRange(start, start);
+    }
+  });
+  document.getElementById('btnHint').addEventListener('click', revealHint);
+  updateHintButton();
+
+  function check(){
+    if(!roundActive) return;
+    const expr = input.value.trim();
+    const res = evaluateUserExpr(expr, challengeDigits);
+    if(res.ok){
+      if(isDuplicateForCurrentDigits(expr)){
+        feedback.className = 'feedback warn';
+        feedback.textContent = tr('dupMsg');
+        return;
+      }
+      playEncouragement();
+      feedback.className = 'feedback ok';
+      feedback.textContent = tr('correctMsg');
+      roundActive = false;
+      addToLog(challengeDigits.slice(), expr);
+      setTimeout(continueSameDigits, 1600);
+    } else {
+      playWrongSound();
+      feedback.className = 'feedback err';
+      feedback.textContent = res.error;
+    }
+  }
+  btnCheck.addEventListener('click', check);
+  input.addEventListener('keydown', e=>{ if(e.key==='Enter') check(); });
+}
+
+function isDuplicateForCurrentDigits(expr){
+  const digitsKey = challengeDigits.join('');
+  return solvedLog.some(entry => entry.digits.join('') === digitsKey && entry.expr === expr);
+}
+
+const MAX_HINTS = 2;
+let hintsUsed = 0;
+let challengeSolutions = null;
+let hintTarget = null;
+let hintRevealed = new Set();
+
+function tokenizeExprForHint(expr){
+  const tokens = [];
+  let i = 0;
+  while(i < expr.length){
+    const c = expr[i];
+    if(/[0-9]/.test(c)){
+      let j = i;
+      while(j < expr.length && /[0-9]/.test(expr[j])) j++;
+      tokens.push({type:'num', value: expr.slice(i,j)});
+      i = j;
+    } else {
+      tokens.push({type:'sym', value: c});
+      i++;
+    }
+  }
+  return tokens;
+}
+function buildHintUnits(tokens){
+  const units = [];
+  const stack = [];
+  tokens.forEach((t,idx)=>{
+    if(t.type !== 'sym') return;
+    if(t.value === '('){ stack.push(idx); }
+    else if(t.value === ')'){
+      const openIdx = stack.pop();
+      units.push({type:'parens', indices:[openIdx, idx]});
+    } else {
+      units.push({type:'op', indices:[idx]});
+    }
+  });
+  units.sort((a,b)=> a.indices[0]-b.indices[0]);
+  return units;
+}
+function buildSkeleton(tokens, revealedIdx){
+  return tokens.map((t,i)=>{
+    if(t.type === 'num') return t.value;
+    return revealedIdx.has(i) ? t.value : '_';
+  }).join('');
+}
+function getUnusedSolutions(){
+  const digitsKey = challengeDigits.join('');
+  const used = new Set(solvedLog.filter(e => e.digits.join('') === digitsKey).map(e => e.expr));
+  return challengeSolutions.filter(s => !used.has(s));
+}
+function prepareHintTarget(){
+  const pool = getUnusedSolutions();
+  const simplest = pool.slice().sort((a,b)=> complexityScore(a)-complexityScore(b))[0];
+  const tokens = tokenizeExprForHint(simplest);
+  const units = buildHintUnits(tokens);
+  hintTarget = {tokens, units};
+  hintRevealed = new Set();
+}
+function updateHintButton(){
+  const btn = document.getElementById('btnHint');
+  if(!btn) return;
+  if(challengeSolutions === null){
+    btn.textContent = '💡 ' + tr('hintPreparing');
+    btn.disabled = true;
+  } else if(challengeSolutions.length === 0){
+    btn.textContent = '💡 ' + tr('hintNoSolutions');
+    btn.disabled = true;
+  } else if(getUnusedSolutions().length === 0){
+    btn.textContent = '💡 ' + tr('hintAllFound');
+    btn.disabled = true;
+  } else {
+    const maxHints = Math.min(MAX_HINTS, hintTarget ? hintTarget.units.length : MAX_HINTS);
+    if(hintsUsed >= maxHints || hintsUsed >= MAX_HINTS){
+      btn.textContent = '💡 ' + tr('hintNoMore');
+      btn.disabled = true;
+    } else {
+      btn.textContent = '💡 ' + tr('hintRemaining', MAX_HINTS - hintsUsed);
+      btn.disabled = false;
+    }
+  }
+}
+function revealHint(){
+  if(challengeSolutions === null || challengeSolutions.length === 0 || hintsUsed >= MAX_HINTS) return;
+  if(getUnusedSolutions().length === 0) return;
+  if(!hintTarget) prepareHintTarget();
+  if(hintsUsed >= hintTarget.units.length) return;
+  const unit = hintTarget.units[hintsUsed];
+  unit.indices.forEach(i => hintRevealed.add(i));
+  hintsUsed++;
+  const input = document.getElementById('answerInput');
+  if(input){
+    input.value = buildSkeleton(hintTarget.tokens, hintRevealed);
+    input.focus();
+  }
+  const text = unit.type === 'parens' ? tr('hintParens', hintsUsed) : tr('hintOp', hintsUsed);
+  const list = document.getElementById('hintsList');
+  if(list){
+    const item = document.createElement('div');
+    item.className = 'hint-item';
+    item.textContent = text;
+    list.appendChild(item);
+  }
+  updateHintButton();
+}
+
+function addToLog(digits, expr){
+  solvedLog.unshift({digits, expr});
+  logCount.textContent = solvedLog.length;
+  if(solvedLog.length === 1) logList.innerHTML = '';
+  const item = document.createElement('div');
+  item.className = 'log-item';
+  item.innerHTML = `<span class="lround">#${solvedLog.length}</span><span class="lexpr" dir="ltr">${displayExpr(expr)} = 100</span><span class="lround" dir="ltr">${digits.join('')}</span>`;
+  logList.prepend(item);
+}
+function updateChallengeSolutionCount(){
+  challengeSolutions = null;
+  const el = document.getElementById('chSolCount');
+  if(el) el.textContent = '…';
+  updateHintButton();
+  setTimeout(()=>{
+    challengeSolutions = solve(challengeDigits);
+    const el2 = document.getElementById('chSolCount');
+    if(el2) el2.textContent = challengeSolutions.length;
+    updateHintButton();
+  }, 20);
+}
+function continueSameDigits(){
+  challengeStarted = true;
+  roundActive = true;
+  hintsUsed = 0;
+  hintTarget = null;
+  updateChallengeSolutionCount();
+  renderAnswerForm();
+}
+function clearLog(){
+  solvedLog = [];
+  logCount.textContent = '0';
+  logList.innerHTML = `<div class="log-empty" id="logEmptyMsg">${tr('logEmpty')}</div>`;
+}
+
+function startChallengeRound(){
+  challengeStarted = true;
+  roundActive = true;
+  hintsUsed = 0;
+  hintTarget = null;
+  challengeDigits = randomDigits();
+  renderChallengeTiles();
+  updateChallengeSolutionCount();
+  renderAnswerForm();
+  clearLog();
+  headerSubtitle.textContent = tr('challengeSubtitleActive');
+}
+btnChallengeRestart.addEventListener('click', startChallengeRound);
+btnSameDigits.addEventListener('click', continueSameDigits);
+
+function evaluateUserExpr(expr, requiredDigits){
+  if(!expr) return {ok:false, error: tr('errPrefix')+tr('errEmpty')};
+  if(!/^[0-9+\-*/^()]+$/.test(expr)){
+    return {ok:false, error: tr('errPrefix')+tr('errBadChars')};
+  }
+  const onlyDigits = expr.replace(/[^0-9]/g,'');
+  if(onlyDigits !== requiredDigits.join('')){
+    return {ok:false, error: tr('errPrefix')+tr('errDigitsMismatch')};
+  }
+  let i = 0;
+  const tokens = [];
+  while(i < expr.length){
+    const c = expr[i];
+    if(/[0-9]/.test(c)){
+      let j = i;
+      while(j < expr.length && /[0-9]/.test(expr[j])) j++;
+      const numStr = expr.slice(i,j);
+      if(numStr.length > 1 && numStr[0]==='0'){
+        return {ok:false, error: tr('errPrefix')+tr('errLeadingZero')};
+      }
+      tokens.push({type:'num', value: parseInt(numStr,10)});
+      i = j;
+    } else {
+      tokens.push({type:'op', value:c});
+      i++;
+    }
+  }
+  let pos = 0;
+  function peek(){ return tokens[pos]; }
+  function parseAtom(){
+    const t = peek();
+    if(!t) throw new Error(tr('errPrefix')+tr('errIncomplete'));
+    if(t.type==='op' && t.value==='('){
+      pos++;
+      const v = parseExpr();
+      const close = peek();
+      if(!close || close.value !== ')') throw new Error(tr('errPrefix')+tr('errUnclosedParen'));
+      pos++;
+      return v;
+    }
+    if(t.type==='num'){ pos++; return t.value; }
+    throw new Error(tr('errPrefix')+tr('errInvalid'));
+  }
+  function parsePower(){
+    let v = parseAtom();
+    while(peek() && peek().value==='^'){ pos++; v = Math.pow(v, parseUnary()); }
+    return v;
+  }
+  function parseUnary(){
+    if(peek() && peek().type==='op' && peek().value==='-'){ pos++; return -parseUnary(); }
+    return parsePower();
+  }
+  function parseTerm(){
+    let v = parseUnary();
+    while(peek() && (peek().value==='*' || peek().value==='/')){
+      const op = tokens[pos].value; pos++;
+      const rhs = parseUnary();
+      v = op==='*' ? v*rhs : v/rhs;
+    }
+    return v;
+  }
+  function parseExpr(){
+    let v = parseTerm();
+    while(peek() && (peek().value==='+' || peek().value==='-')){
+      const op = tokens[pos].value; pos++;
+      const rhs = parseTerm();
+      v = op==='+' ? v+rhs : v-rhs;
+    }
+    return v;
+  }
+  let value;
+  try{
+    value = parseExpr();
+    if(pos !== tokens.length) throw new Error(tr('errPrefix')+tr('errInvalid'));
+  }catch(e){
+    return {ok:false, error: e.message || (tr('errPrefix')+tr('errInvalid'))};
+  }
+  if(!Number.isFinite(value)) return {ok:false, error: tr('errPrefix')+tr('errUndefined')};
+  if(Math.abs(value-100) > 1e-6) return {ok:false, error: tr('errWrongResult', Math.round(value*1e6)/1e6)};
+  return {ok:true, value:100};
+}
+
+/* ================= start the challenge (3-level test) ================= */
+const scSetupEl = document.getElementById('scSetup');
+const scGeneratingEl = document.getElementById('scGenerating');
+const scActiveEl = document.getElementById('scActive');
+const scResultEl = document.getElementById('scResult');
+const scTilesEl = document.getElementById('scTiles');
+const scProgressEl = document.getElementById('scProgress');
+const scTimerWrapEl = document.getElementById('scTimerWrap');
+const scTimerDisplayEl = document.getElementById('scTimerDisplay');
+const scTimerBarFillEl = document.getElementById('scTimerBarFill');
+const scBodyEl = document.getElementById('scBody');
+const scStartBtn = document.getElementById('scStartBtn');
+const scDurationRow = document.getElementById('scDurationRow');
+const scStopBtn = document.getElementById('scStopBtn');
+const scStepDiffEl = document.getElementById('scStepDiff');
+const scStepDurationEl = document.getElementById('scStepDuration');
+const scStepCountEl = document.getElementById('scStepCount');
+const scStartWrapEl = document.getElementById('scStartWrap');
+
+let scDifficulty = null;
+let scTiming = 'timed';
+let scDuration = null;
+let scSuggestionCount = null;
+let scPlayers = null;
+let scDigitsList = [];
+let scCurrentIndex = 0;
+let scTimerInterval = null;
+let scSecondsLeft = 0;
+let scRoundActive = false;
+let scTurn = 1;
+let scP1Result = null;
+let scP2Result = null;
+let scP1Time = null;
+let scP2Time = null;
+let scP1Found = null;
+let scP2Found = null;
+
+function resetSetupSelections(){
+  scDifficulty = null;
+  scDuration = null;
+  scSuggestionCount = null;
+  scPlayers = null;
+  document.querySelectorAll('#scSetup .diff-card').forEach(c=> c.classList.remove('selected'));
+  scStartWrapEl.style.display = 'none';
+}
+function updateScStartVisibility(){
+  scStartWrapEl.style.display = (scDifficulty && scDuration && scSuggestionCount && scPlayers) ? '' : 'none';
+}
+
+document.querySelectorAll('#scStepPlayers [data-players]').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    playClickSound();
+    scPlayers = parseInt(card.dataset.players, 10);
+    document.querySelectorAll('[data-players]').forEach(c=> c.classList.toggle('selected', c===card));
+    updateScStartVisibility();
+  });
+});
+document.querySelectorAll('#scStepDiff [data-diff]').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    playClickSound();
+    scDifficulty = card.dataset.diff;
+    document.querySelectorAll('[data-diff]').forEach(c=> c.classList.toggle('selected', c===card));
+    updateScStartVisibility();
+  });
+});
+document.querySelectorAll('#scDurationRow [data-dur]').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    playClickSound();
+    scDuration = parseInt(card.dataset.dur, 10);
+    document.querySelectorAll('[data-dur]').forEach(c=> c.classList.toggle('selected', c===card));
+    updateScStartVisibility();
+  });
+});
+document.querySelectorAll('#scCountRow [data-count]').forEach(card=>{
+  card.addEventListener('click', ()=>{
+    playClickSound();
+    scSuggestionCount = parseInt(card.dataset.count, 10);
+    document.querySelectorAll('[data-count]').forEach(c=> c.classList.toggle('selected', c===card));
+    updateScStartVisibility();
+  });
+});
+
+document.getElementById('scEnableSoundBtn').addEventListener('click', function(){
+  unlockAllAudio();
+  const btn = this;
+  try{
+    const ctx = getAudioCtx();
+    if(ctx && ctx.state === 'suspended'){
+      ctx.resume().then(()=>{
+        playCorrectSound();
+        btn.textContent = '🔊 ' + tr('scSoundOk');
+      }).catch((err)=>{
+        btn.textContent = '🔇 ' + tr('scSoundFailed') + ' (' + (err && err.name ? err.name : 'unknown') + ')';
+      });
+    } else {
+      playCorrectSound();
+      btn.textContent = '🔊 ' + tr('scSoundOk');
+    }
+  }catch(err){
+    btn.textContent = '🔇 ' + tr('scSoundFailed') + ' (' + (err && err.name ? err.name : 'unknown') + ')';
+  }
+});
+function unlockTickAudio(){
+  unlockAllAudio();
+}
+
+scStartBtn.addEventListener('click', ()=>{
+  unlockTickAudio();
+  setScTabsLocked(true);
+  scSetupEl.style.display = 'none';
+  scGeneratingEl.style.display = '';
+  scDigitsList = [];
+  setTimeout(()=> generateScChallenge(scDifficulty, (list)=>{
+    scDigitsList = list;
+    scGeneratingEl.style.display = 'none';
+    scTurn = 1;
+    scP1Result = null;
+    scP2Result = null;
+    scP1Time = null;
+    scP2Time = null;
+    scP1Found = null;
+    scP2Found = null;
+    if(scPlayers === 2){
+      showTurnIntro(1);
+      return;
+    }
+    scActiveEl.style.display = '';
+    scCurrentIndex = 0;
+    scFoundPerSuggestion = Array.from({length: scSuggestionCount}, ()=> []);
+    scRoundActive = true;
+    startScTimerIfNeeded();
+    renderScStage();
+  }), 20);
+});
+
+function difficultyScore(solutions){
+  if(solutions.length === 0) return null;
+  const simplest = solutions.slice().sort((a,b)=> complexityScore(a)-complexityScore(b))[0];
+  let score = complexityScore(simplest);
+  if(/\d{2,}/.test(simplest)) score += 3;     // needs combining two or more digits into one number
+  if(simplest[0] === '-') score += 3;         // needs a leading negative sign
+  const n = solutions.length;
+  score -= (n >= 40 ? 2 : n >= 15 ? 1 : 0);   // slightly easier to stumble on when many paths exist
+  return score;
+}
+function classifyBucket(score){
+  if(score === null) return null;
+  if(score < 6) return 'easy';
+  if(score <= 8) return 'medium';
+  return 'hard';
+}
+function bucketDistance(bucket, score){
+  if(score === null) return Infinity;
+  if(bucket === 'easy') return Math.max(0, score - 5.99);
+  if(bucket === 'medium') return score < 6 ? (6 - score) : (score > 8 ? (score - 8) : 0);
+  return Math.max(0, 8.01 - score);
+}
+function findOneSuggestion(bucket, maxAttempts, done){
+  let attempts = 0;
+  let best = null, bestDist = Infinity;
+  function step(){
+    attempts++;
+    const d = randomDigits();
+    const score = difficultyScore(solve(d));
+    const b = classifyBucket(score);
+    const dist = bucketDistance(bucket, score);
+    if(dist < bestDist){ bestDist = dist; best = d; }
+    if(b === bucket){ done(d); return; }
+    if(attempts >= maxAttempts){ done(best || d); return; }
+    setTimeout(step, 0);
+  }
+  step();
+}
+function generateScChallenge(bucket, onDone){
+  const caps = {hard:25, medium:12, easy:20};
+  const maxAttempts = caps[bucket] || 15;
+  const results = [];
+  function next(){
+    if(results.length >= scSuggestionCount){ onDone(results); return; }
+    findOneSuggestion(bucket, maxAttempts, (d)=>{
+      results.push(d);
+      next();
+    });
+  }
+  next();
+}
+
+let scFoundPerSuggestion = [];
+
+function renderScProgress(){
+  scProgressEl.innerHTML = '';
+  for(let i=0;i<scSuggestionCount;i++){
+    const s = document.createElement('div');
+    const done = scFoundPerSuggestion[i].length > 0;
+    s.className = 'sc-step' + (done ? ' done' : '') + (i === scCurrentIndex ? ' current' : '');
+    s.textContent = done ? '✓' : String(i+1);
+    s.style.cursor = 'pointer';
+    s.addEventListener('click', ()=> goToSuggestion(i));
+    scProgressEl.appendChild(s);
+  }
+}
+function renderScTiles(){
+  scTilesEl.innerHTML = '';
+  scDigitsList[scCurrentIndex].forEach(d=>{
+    const t = document.createElement('div');
+    t.className = 'tile clickable';
+    t.textContent = d;
+    t.addEventListener('click', ()=>{
+      playClickSound();
+      const input = document.getElementById('scAnswerInput');
+      if(input) insertAtCursor(input, d);
+    });
+    scTilesEl.appendChild(t);
+  });
+}
+function renderScFoundList(){
+  const wrap = document.getElementById('scFoundList');
+  if(!wrap) return;
+  const found = scFoundPerSuggestion[scCurrentIndex];
+  if(found.length === 0){ wrap.innerHTML = ''; return; }
+  wrap.innerHTML = `<div class="count-chip" style="margin-bottom:8px;display:inline-block;">${found.length}</div>` +
+    `<div class="ticket-list">${found.map((e,i)=>`<div class="ticket"><span class="index">${i+1}</span><span class="expr">${displayExpr(e)} <span class="eq">=</span> <span class="res">100</span></span></div>`).join('')}</div>`;
+}
+
+function renderScAnswerForm(){
+  scBodyEl.innerHTML = `
+    <div class="keypad-label">${tr('scSuggestionLabel', scCurrentIndex+1, scSuggestionCount)}</div>
+    <div class="op-keypad">
+      <button class="op-key" data-op="+">+</button>
+      <button class="op-key" data-op="-">−</button>
+      <button class="op-key" data-op="*">×</button>
+      <button class="op-key" data-op="/">÷</button>
+      <button class="op-key" data-op="^">^</button>
+      <button class="op-key erase" id="scOpErase">⌫</button>
+    </div>
+    <div class="op-keypad">
+      <button class="op-key" data-op="(">(</button>
+      <button class="op-key" data-op=")">)</button>
+    </div>
+    <div class="answer-row">
+      <input type="text" class="answer-input" id="scAnswerInput" placeholder="${tr('answerPlaceholder')}" autocomplete="off" inputmode="none">
+      <button class="btn-primary" id="scBtnCheck">${tr('checkBtn')}</button>
+    </div>
+    <div class="feedback" id="scFeedback"></div>
+    <div id="scFoundList"></div>
+    <div class="controls" style="margin-top:8px;">
+      <button class="btn-ghost" id="scPrevBtn" ${scCurrentIndex===0 ? 'disabled' : ''}>◀ ${tr('scPrevBtn')}</button>
+      <button class="btn-primary" id="scNextBtn" ${scCurrentIndex===scSuggestionCount-1 ? 'disabled' : ''}>${tr('scNextBtn')} ▶</button>
+    </div>
+  `;
+  renderScFoundList();
+  const input = document.getElementById('scAnswerInput');
+  scBodyEl.querySelectorAll('.op-key[data-op]').forEach(b=>{
+    b.addEventListener('click', ()=>{ playClickSound(); insertAtCursor(input, b.dataset.op); });
+  });
+  document.getElementById('scOpErase').addEventListener('click', ()=>{
+    playClickSound();
+    const start = input.selectionStart ?? input.value.length;
+    const end = input.selectionEnd ?? input.value.length;
+    if(start === end && start > 0){
+      input.value = input.value.slice(0,start-1) + input.value.slice(end);
+      input.focus(); input.setSelectionRange(start-1, start-1);
+    } else {
+      input.value = input.value.slice(0,start) + input.value.slice(end);
+      input.focus(); input.setSelectionRange(start, start);
+    }
+  });
+  function scCheck(){
+    if(!scRoundActive) return;
+    const expr = input.value.trim();
+    const res = evaluateUserExpr(expr, scDigitsList[scCurrentIndex]);
+    const feedback = document.getElementById('scFeedback');
+    if(res.ok){
+      if(scFoundPerSuggestion[scCurrentIndex].includes(expr)){
+        feedback.className = 'feedback warn';
+        feedback.textContent = tr('dupMsg');
+        return;
+      }
+      playEncouragement();
+      scFoundPerSuggestion[scCurrentIndex].push(expr);
+      renderScFoundList();
+      renderScProgress();
+      feedback.className = 'feedback ok';
+      feedback.textContent = tr('scFoundMsg');
+      input.value = '';
+      if(scFoundPerSuggestion.every(f => f.length > 0)){
+        if(scPlayers === 2){
+          setTimeout(handleTurnEnd, 900);
+        } else {
+          setTimeout(()=> finishScChallenge(true), 900);
+        }
+      }
+    } else {
+      playWrongSound();
+      feedback.className = 'feedback err';
+      feedback.textContent = res.error;
+    }
+  }
+  document.getElementById('scBtnCheck').addEventListener('click', scCheck);
+  input.addEventListener('keydown', e=>{ if(e.key==='Enter') scCheck(); });
+  document.getElementById('scPrevBtn').addEventListener('click', ()=> goToSuggestion(scCurrentIndex-1));
+  document.getElementById('scNextBtn').addEventListener('click', ()=> goToSuggestion(scCurrentIndex+1));
+}
+
+function showTurnIntro(player){
+  scActiveEl.style.display = 'none';
+  scResultEl.style.display = '';
+  scResultEl.innerHTML = `
+    <div class="sc-outcome">
+      <div class="big-emoji">🤝</div>
+      <h3>${tr('scPlayerLabel', player)}</h3>
+      <p>${tr('scPassPhone', player)}</p>
+      <div class="controls">
+        <button class="btn-primary" id="scTurnStartBtn">▶ ${tr('scTurnStartBtn')}</button>
+      </div>
+    </div>`;
+  document.getElementById('scTurnStartBtn').addEventListener('click', ()=>{
+    unlockTickAudio();
+    scResultEl.style.display = 'none';
+    scActiveEl.style.display = '';
+    scCurrentIndex = 0;
+    scFoundPerSuggestion = Array.from({length: scSuggestionCount}, ()=> []);
+    scRoundActive = true;
+    startScTimerIfNeeded();
+    renderScStage();
+  });
+}
+function handleTurnEnd(){
+  const solvedCount = scFoundPerSuggestion.filter(f => f.length > 0).length;
+  const timeUsed = scDuration - Math.max(scSecondsLeft, 0);
+  if(scTurn === 1){
+    scP1Result = solvedCount;
+    scP1Time = timeUsed;
+    scP1Found = scFoundPerSuggestion.map(arr => arr.slice());
+    scTurn = 2;
+    showTurnIntro(2);
+  } else {
+    scP2Result = solvedCount;
+    scP2Time = timeUsed;
+    scP2Found = scFoundPerSuggestion.map(arr => arr.slice());
+    finishTwoPlayerChallenge();
+  }
+}
+function finishTwoPlayerChallenge(){
+  scRoundActive = false;
+  setScTabsLocked(false);
+  clearInterval(scTimerInterval);
+  scTimerInterval = null;
+  pauseTick();
+  scActiveEl.style.display = 'none';
+  scResultEl.style.display = '';
+  let bodyText;
+  let emoji;
+  if(scP1Result === scP2Result){
+    if(scP1Time !== scP2Time){
+      const winner = scP1Time < scP2Time ? 1 : 2;
+      bodyText = tr('scRaceWinnerByTime', winner, scP1Result, scSuggestionCount);
+      emoji = '🏆';
+    } else {
+      bodyText = tr('scRaceTie', scP1Result, scSuggestionCount);
+      emoji = '🤝';
+    }
+  } else {
+    const winner = scP1Result > scP2Result ? 1 : 2;
+    bodyText = tr('scRaceWinner', winner, scP1Result, scP2Result, scSuggestionCount);
+    emoji = '🏆';
+  }
+  const bestCount = Math.max(scP1Result, scP2Result);
+  playRatingSound(getRatingInfo(bestCount, scSuggestionCount).key);
+  scResultEl.innerHTML = `
+    <div class="sc-outcome">
+      <div class="big-emoji">${emoji}</div>
+      <h3>${tr('scSuccessTitle')}</h3>
+      <p>${bodyText}</p>
+      <div class="race-player-name" style="margin-top:6px;">${tr('scPlayerLabel',1)}</div>
+      ${buildRatingHtml(scP1Result, scSuggestionCount)}
+      ${buildBreakdownHtml(scP1Found, scDigitsList)}
+      <div class="race-player-name" style="margin-top:10px;">${tr('scPlayerLabel',2)}</div>
+      ${buildRatingHtml(scP2Result, scSuggestionCount)}
+      ${buildBreakdownHtml(scP2Found, scDigitsList)}
+      <div class="controls">
+        <button class="btn-primary" id="scRetryBtn">🔁 ${tr('scRetryBtn')}</button>
+        <button class="btn-ghost" id="scChangeBtn">⚙️ ${tr('scChangeSettingsBtn')}</button>
+      </div>
+    </div>`;
+  document.getElementById('scRetryBtn').addEventListener('click', ()=>{
+    setScTabsLocked(true);
+    scResultEl.style.display = 'none';
+    scGeneratingEl.style.display = '';
+    setTimeout(()=> generateScChallenge(scDifficulty, (list)=>{
+      scDigitsList = list;
+      scGeneratingEl.style.display = 'none';
+      scTurn = 1;
+      scP1Result = null;
+      scP2Result = null;
+      scP1Time = null;
+      scP2Time = null;
+      scP1Found = null;
+      scP2Found = null;
+      showTurnIntro(1);
+    }), 20);
+  });
+  document.getElementById('scChangeBtn').addEventListener('click', ()=>{
+    scResultEl.style.display = 'none';
+    scSetupEl.style.display = '';
+    resetSetupSelections();
+  });
+}
+
+function renderScStage(){
+  renderScProgress();
+  scTilesEl.style.display = '';
+  renderScTiles();
+  renderScAnswerForm();
+}
+function goToSuggestion(i){
+  if(i < 0 || i > scSuggestionCount-1) return;
+  scCurrentIndex = i;
+  renderScStage();
+}
+
+function startScTimerIfNeeded(){
+  scTimerWrapEl.style.display = scTiming === 'timed' ? '' : 'none';
+  clearInterval(scTimerInterval);
+  if(scTiming !== 'timed') return;
+  scSecondsLeft = scDuration;
+  updateScTimerDisplay();
+  playTick();
+  scTimerInterval = setInterval(()=>{
+    scSecondsLeft--;
+    updateScTimerDisplay();
+    if(scSecondsLeft > 0 && scSecondsLeft <= 5){
+      playUrgentBeep();
+    }
+    if(scSecondsLeft <= 0){
+      clearInterval(scTimerInterval);
+      scTimerInterval = null;
+      pauseTick();
+      if(scPlayers === 2){
+        if(!scFoundPerSuggestion.every(f => f.length > 0)) handleTurnEnd();
+      } else {
+        if(!scFoundPerSuggestion.every(f => f.length > 0)) finishScChallenge(false);
+      }
+    }
+  }, 1000);
+}
+function updateScTimerDisplay(){
+  const m = Math.floor(Math.max(scSecondsLeft,0)/60), s = Math.max(scSecondsLeft,0)%60;
+  scTimerDisplayEl.textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  const pct = Math.max(scSecondsLeft,0)/scDuration*100;
+  scTimerBarFillEl.style.width = pct+'%';
+  const warn = scSecondsLeft <= 20;
+  scTimerDisplayEl.classList.toggle('warn', warn);
+  scTimerBarFillEl.classList.toggle('warn', warn);
+}
+
+function diffLabel(){
+  return scDifficulty==='easy' ? tr('scDiffEasyTitle') : scDifficulty==='medium' ? tr('scDiffMediumTitle') : tr('scDiffHardTitle');
+}
+function stopScChallenge(){
+  scRoundActive = false;
+  setScTabsLocked(false);
+  clearInterval(scTimerInterval);
+  scTimerInterval = null;
+  pauseTick();
+  scActiveEl.style.display = 'none';
+  scResultEl.style.display = 'none';
+  scSetupEl.style.display = '';
+  resetSetupSelections();
+}
+scStopBtn.addEventListener('click', stopScChallenge);
+function getRatingInfo(solvedCount, total){
+  const percent = total > 0 ? (solvedCount / total * 100) : 0;
+  if(percent >= 100) return {emoji:'🏆', key:'ratingPerfect'};
+  if(percent >= 75)  return {emoji:'🌟', key:'ratingExcellent'};
+  if(percent >= 50)  return {emoji:'👍', key:'ratingGood'};
+  if(percent >= 25)  return {emoji:'💪', key:'ratingFair'};
+  if(percent > 0)    return {emoji:'🌱', key:'ratingStart'};
+  return {emoji:'🔄', key:'ratingTryAgain'};
+}
+function buildRatingHtml(solvedCount, total){
+  const r = getRatingInfo(solvedCount, total);
+  return `<div class="rating-box"><span class="rating-emoji">${r.emoji}</span><span class="rating-text">${tr(r.key)}</span></div>`;
+}
+function buildBreakdownHtml(foundArr, digitsList){
+  let html = '<div class="rb-list">';
+  for(let i=0;i<digitsList.length;i++){
+    const digitsStr = digitsList[i].join('');
+    const sols = foundArr[i] || [];
+    html += `<div class="rb-item"><div class="rb-head">#${i+1} · <span dir="ltr">${digitsStr}</span></div>`;
+    if(sols.length === 0){
+      html += `<div class="rb-none">${tr('scNoSolutionFound')}</div>`;
+    } else {
+      html += sols.map(e=>`<div class="rb-sol" dir="ltr">${displayExpr(e)} = 100</div>`).join('');
+    }
+    html += `</div>`;
+  }
+  html += '</div>';
+  return html;
+}
+
+function finishScChallenge(success){
+  scRoundActive = false;
+  setScTabsLocked(false);
+  clearInterval(scTimerInterval);
+  scTimerInterval = null;
+  pauseTick();
+  scActiveEl.style.display = 'none';
+  scResultEl.style.display = '';
+  if(success){
+    playRatingSound(getRatingInfo(scSuggestionCount, scSuggestionCount).key);
+    recordRoundToAccount(scSuggestionCount, scSuggestionCount);
+    scResultEl.innerHTML = `
+      <div class="sc-outcome">
+        <div class="big-emoji">🏆</div>
+        <h3>${tr('scSuccessTitle')}</h3>
+        <p>${tr('scSuccessSub', diffLabel(), scSuggestionCount)}</p>
+        ${buildRatingHtml(scSuggestionCount, scSuggestionCount)}
+        ${buildBreakdownHtml(scFoundPerSuggestion, scDigitsList)}
+        <div class="controls">
+          <button class="btn-primary" id="scRetryBtn">🔁 ${tr('scRetryBtn')}</button>
+          <button class="btn-ghost" id="scChangeBtn">⚙️ ${tr('scChangeSettingsBtn')}</button>
+        </div>
+      </div>`;
+  } else {
+    const solvedCount = scFoundPerSuggestion.filter(f => f.length > 0).length;
+    playRatingSound(getRatingInfo(solvedCount, scSuggestionCount).key);
+    recordRoundToAccount(solvedCount, scSuggestionCount);
+    scResultEl.innerHTML = `
+      <div class="sc-outcome">
+        <div class="big-emoji">⏰</div>
+        <h3>${tr('scFailTitle')}</h3>
+        <p>${tr('scFailSub', solvedCount, scSuggestionCount)}</p>
+        ${buildRatingHtml(solvedCount, scSuggestionCount)}
+        ${buildBreakdownHtml(scFoundPerSuggestion, scDigitsList)}
+        <div class="controls">
+          <button class="btn-primary" id="scRetryBtn">🔁 ${tr('scRetryBtn')}</button>
+          <button class="btn-ghost" id="scChangeBtn">⚙️ ${tr('scChangeSettingsBtn')}</button>
+        </div>
+      </div>`;
+  }
+  document.getElementById('scRetryBtn').addEventListener('click', ()=>{
+    unlockTickAudio();
+    setScTabsLocked(true);
+    scResultEl.style.display = 'none';
+    scGeneratingEl.style.display = '';
+    setTimeout(()=> generateScChallenge(scDifficulty, (list)=>{
+      scDigitsList = list;
+      scGeneratingEl.style.display = 'none';
+      scActiveEl.style.display = '';
+      scCurrentIndex = 0;
+      scFoundPerSuggestion = Array.from({length: scSuggestionCount}, ()=> []);
+      scRoundActive = true;
+      startScTimerIfNeeded();
+      renderScStage();
+    }), 20);
+  });
+  document.getElementById('scChangeBtn').addEventListener('click', ()=>{
+    scResultEl.style.display = 'none';
+    scSetupEl.style.display = '';
+    resetSetupSelections();
+  });
+}
+
+/* ================= boot ================= */
+buildKeypad();
+renderTiles(false);
+resultsEl.innerHTML = `<div class="loading">${tr('waitingForDigits')}</div>`;
+document.getElementById('freeRulesToggle').addEventListener('click', ()=>{
+  document.getElementById('freeRules').classList.toggle('open');
+});
+document.getElementById('challengeRulesToggle').addEventListener('click', ()=>{
+  document.getElementById('challengeRules').classList.toggle('open');
+});
+
+buildLangButtons();
+resetSetupSelections();
+applyStaticText();
+</script>
+</body>
+</html>
